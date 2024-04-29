@@ -1,7 +1,3 @@
-import { CharacterCard } from '@/components/RickAndMorty/CharacterCard'
-import { Button } from '@/components/ui/button'
-import { GET, Location } from '@/types/rickandmorty/location'
-import { Character } from '@/types/rickandmorty/people'
 import {
   ArrowLeftIcon,
   ArrowLeftToLineIcon,
@@ -10,6 +6,12 @@ import {
   HomeIcon
 } from 'lucide-react'
 import Link from 'next/link'
+
+import { CharacterCard } from '@/components/RickAndMorty/CharacterCard'
+import { Button } from '@/components/ui/button'
+import type { Location } from '@/types/rickandmorty/location'
+import { GET } from '@/types/rickandmorty/location'
+import type { Character } from '@/types/rickandmorty/people'
 
 export default async function RickAndMortyCharacterPage({
   params
@@ -32,15 +34,15 @@ export default async function RickAndMortyCharacterPage({
   if (!locationData) return <></>
 
   return (
-    <main className='p-4 flex flex-col gap-4 justify-center items-center h-screen w-screen overflow-hidden'>
-      <div className='flex flex-row gap-4 w-80 items-center justify-center'>
+    <main className='flex h-screen w-screen flex-col items-center justify-center gap-4 overflow-hidden p-4'>
+      <div className='flex w-80 flex-row items-center justify-center gap-4'>
         <Button disabled={characterId <= 1} variant={'ghost'}>
           <Link href={'/rickandmorty/1'}>
             <ArrowLeftToLineIcon className='size-6' />
           </Link>
         </Button>
         <Button disabled={characterId <= 1} variant={'ghost'}>
-          <Link href={'/rickandmorty/' + (characterId - 1)}>
+          <Link href={`/rickandmorty/${characterId - 1}`}>
             <ArrowLeftIcon className='size-6' />
           </Link>
         </Button>
@@ -49,12 +51,12 @@ export default async function RickAndMortyCharacterPage({
             <HomeIcon className='size-6' />
           </Button>
         </Link>
-        <Link href={'/rickandmorty/' + (1 + characterId)}>
+        <Link href={`/rickandmorty/${1 + characterId}`}>
           <Button disabled={characterId >= 826} variant={'ghost'}>
             <ArrowRightIcon className='size-6' />
           </Button>
         </Link>
-        <Link href={'/rickandmorty/' + 826}>
+        <Link href={`/rickandmorty/${826}`}>
           <Button disabled={characterId >= 826} variant={'ghost'}>
             <ArrowRightToLineIcon className='size-6' />
           </Button>

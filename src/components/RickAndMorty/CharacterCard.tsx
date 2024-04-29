@@ -1,14 +1,15 @@
 import { Glow, GlowCapture } from '@codaworks/react-glow'
-import { Card } from '../ui/card'
-import Image from 'next/image'
-import { IoMdFemale, IoMdMale, IoMdQuote } from 'react-icons/io'
-import { Character } from '@/types/rickandmorty/people'
-import { FC } from 'react'
-import { Location } from '@/types/rickandmorty/location'
-import { cn } from '@/lib/utils'
 import { AtomIcon, GlobeIcon, HomeIcon } from 'lucide-react'
-import { IoHelp } from 'react-icons/io5'
+import Image from 'next/image'
+import type { FC } from 'react'
 import { FaGenderless } from 'react-icons/fa'
+import { IoMdFemale, IoMdMale } from 'react-icons/io'
+
+import { cn } from '@/lib/utils'
+import type { Location } from '@/types/rickandmorty/location'
+import type { Character } from '@/types/rickandmorty/people'
+
+import { Card } from '../ui/card'
 
 export interface CharacterCardProps {
   characterData: Character
@@ -34,7 +35,7 @@ export const CharacterCard: FC<CharacterCardProps> = ({
             characterData.gender.toLowerCase() === 'male'
               ? 'shadow-green-500/40'
               : 'shadow-purple-500/40',
-            'shadow-2xl select-none pb-4 glow:text-glow/10 bg-card text-card-foreground relative flex flex-col space-y-4 items-center'
+            'glow:text-glow/10 bg-card text-card-foreground relative flex select-none flex-col items-center space-y-4 pb-4 shadow-2xl'
           )}
         >
           <Image
@@ -42,26 +43,29 @@ export const CharacterCard: FC<CharacterCardProps> = ({
             alt='image'
             width={600}
             height={600}
-            className='object-cover rounded-t-lg'
+            className='rounded-t-lg object-cover'
           />
           <h1 className='text-2xl font-semibold'>{`#${characterData.id} ${characterData.name}`}</h1>
-          <p className='flex flex-row gap-4 items-center'>
-            {characterData.gender.toLowerCase() === 'male' ? (
-              <IoMdMale
-                className='size-4 cursor-help'
-                title={characterData.gender}
-              />
-            ) : characterData.gender.toLowerCase() === 'female' ? (
-              <IoMdFemale
-                className='size-4 cursor-help'
-                title={characterData.gender}
-              />
-            ) : (
-              <FaGenderless
-                className='size-4 cursor-help'
-                title={characterData.gender}
-              />
-            )}
+          <p className='flex flex-row items-center gap-4'>
+            {
+              // eslint-disable-next-line no-nested-ternary
+              characterData.gender.toLowerCase() === 'male' ? (
+                <IoMdMale
+                  className='size-4 cursor-help'
+                  title={characterData.gender}
+                />
+              ) : characterData.gender.toLowerCase() === 'female' ? (
+                <IoMdFemale
+                  className='size-4 cursor-help'
+                  title={characterData.gender}
+                />
+              ) : (
+                <FaGenderless
+                  className='size-4 cursor-help'
+                  title={characterData.gender}
+                />
+              )
+            }
             <p className='cursor-help' title={characterData.species}>
               {characterData.species}
             </p>
@@ -69,21 +73,21 @@ export const CharacterCard: FC<CharacterCardProps> = ({
           <p>{`Episodes: ${characterData.episode.length}`}</p>
           <div>
             <div
-              className='flex items-center gap-2 cursor-help'
+              className='flex cursor-help items-center gap-2'
               title='Location'
             >
               <GlobeIcon className='size-4' />
               <h2 className='text-xl'>{`${locationData.name}`}</h2>
             </div>
             <div
-              className='flex items-center gap-2 cursor-help'
+              className='flex cursor-help items-center gap-2'
               title='Home Type'
             >
               <HomeIcon className='size-4' />
               <p>{locationData.type}</p>
             </div>
             <div
-              className='flex items-center gap-2 cursor-help'
+              className='flex cursor-help items-center gap-2'
               title='Dimension'
             >
               <AtomIcon className='size-4' />

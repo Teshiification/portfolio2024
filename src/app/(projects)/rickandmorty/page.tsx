@@ -1,10 +1,12 @@
 'use client'
+
+import { ArrowLeftIcon, ArrowRightIcon } from 'lucide-react'
+import { useEffect, useState } from 'react'
+
 import { CharacterOverviewCard } from '@/components/RickAndMorty/CharacterOverviewCard'
 import { Button } from '@/components/ui/button'
 import { Skeleton } from '@/components/ui/skeleton'
-import { Character } from '@/types/rickandmorty/people'
-import { ArrowLeftIcon, ArrowRightIcon } from 'lucide-react'
-import { useEffect, useState } from 'react'
+import type { Character } from '@/types/rickandmorty/people'
 
 export default function RickAndMortyCharactersPage() {
   const [fetchData, setFetchData] = useState<{
@@ -26,7 +28,7 @@ export default function RickAndMortyCharactersPage() {
       try {
         const response = await fetch(fetchUrl)
         if (!response.ok) {
-          throw new Error('Failed to fetch data' + fetchUrl)
+          throw new Error(`Failed to fetch data${fetchUrl}`)
         }
         const data = await response.json()
         setFetchData(data)
@@ -45,14 +47,14 @@ export default function RickAndMortyCharactersPage() {
     )
 
   return (
-    <main className='p-20 flex flex-col h-screen w-screen overflow-hidden items-center'>
-      <div className='gap-4 place-items-stretch flex flex-wrap w-full h-full overflow-x-hidden overflow-y-auto items-stretch'>
+    <main className='flex h-screen w-screen flex-col items-center overflow-hidden p-20'>
+      <div className='flex size-full flex-wrap place-items-stretch items-stretch gap-4 overflow-y-auto overflow-x-hidden'>
         {fetchData.results.map((characterData: Character, index: number) => (
           <CharacterOverviewCard key={index} characterData={characterData} />
         ))}
       </div>
 
-      <div className='flex flex-row gap-4 w-80 items-center justify-center'>
+      <div className='flex w-80 flex-row items-center justify-center gap-4'>
         <Button
           disabled={!fetchData.info.prev}
           variant={'ghost'}

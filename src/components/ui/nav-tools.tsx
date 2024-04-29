@@ -1,11 +1,13 @@
 'use client'
 
-import { useState } from 'react'
-import { Button } from './button'
-import { ThemeToggle } from './theme-toggle'
-import { cn } from '@/lib/utils'
 import { GitBranchIcon, GripVerticalIcon, HomeIcon } from 'lucide-react'
 import Link from 'next/link'
+import { useState } from 'react'
+
+import { cn } from '@/lib/utils'
+
+import { Button } from './button'
+import { ThemeToggle } from './theme-toggle'
 
 export const NavTools = () => {
   const [expand, setExpand] = useState<boolean>(false)
@@ -13,7 +15,7 @@ export const NavTools = () => {
   return (
     <div
       className={cn(
-        'flex flex-col absolute top-4 right-4 z-50 transition-all ease-in-out duration-300 rounded-lg overflow-hidden',
+        'absolute right-4 top-4 z-50 flex flex-col overflow-hidden rounded-lg transition-all duration-300 ease-in-out',
         expand ? 'bg-background' : 'bg-transparent'
       )}
     >
@@ -27,7 +29,7 @@ export const NavTools = () => {
       </Button>
       <div
         className={cn(
-          'flex flex-col space-y-1 items-center transition-all ease-in-out duration-300',
+          'flex flex-col items-center space-y-1 transition-all duration-300 ease-in-out',
           expand ? 'visible size-full' : 'hidden size-4'
         )}
       >

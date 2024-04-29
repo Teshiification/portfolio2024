@@ -15,9 +15,8 @@ export const GET = async (url: string) => {
     const locationData = await locationResponse.json()
     console.log(locationData) // or use locationData as needed
     return locationData as Location
-  } else {
-    console.error('Failed to fetch location data:', locationResponse.statusText)
   }
+  console.error('Failed to fetch location data:', locationResponse.statusText)
 
   return {
     id: -1,

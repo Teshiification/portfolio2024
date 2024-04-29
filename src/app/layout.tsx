@@ -1,11 +1,12 @@
-import type { Metadata } from 'next'
-import { Inter as FontSans } from 'next/font/google'
 import '@/styles/globals.css'
 
-import { cn } from '@/lib/utils'
+import type { Metadata } from 'next'
+import { Inter as FontSans } from 'next/font/google'
 import { ThemeProvider } from 'next-themes'
-import { NavTools } from '@/components/ui/nav-tools'
 import React from 'react'
+
+import { NavTools } from '@/components/ui/nav-tools'
+import { cn } from '@/lib/utils'
 
 const fontSans = FontSans({
   subsets: ['latin'],
@@ -26,7 +27,7 @@ export default function RootLayout({
     <html lang='en' suppressHydrationWarning>
       <body
         className={cn(
-          'min-h-screen max-w-screen bg-background text-foreground font-sans antialiased overflow-x-hidden ',
+          'max-w-screen bg-background text-foreground min-h-screen overflow-x-hidden font-sans antialiased ',
           'scrollbar scrollbar-track-primary scrollbar-thumb-secondary scrollbar-thumb-rounded-full',
           fontSans.variable
         )}
@@ -38,7 +39,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <NavTools />
-          <div className='relative flex min-h-screen flex-col bg-background select-none'>
+          <div className='bg-background relative flex min-h-screen select-none flex-col'>
             {children}
           </div>
         </ThemeProvider>
