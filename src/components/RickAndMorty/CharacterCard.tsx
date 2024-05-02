@@ -43,7 +43,7 @@ export const CharacterCard: FC<CharacterCardProps> = ({
             alt='image'
             width={600}
             height={600}
-            className='rounded-t-lg object-cover'
+            className='w-screen object-cover md:w-full md:rounded-t-lg '
           />
           <h1 className='text-2xl font-semibold'>{`#${characterData.id} ${characterData.name}`}</h1>
           <p className='flex flex-row items-center gap-4'>

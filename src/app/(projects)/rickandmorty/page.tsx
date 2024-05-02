@@ -47,14 +47,14 @@ export default function RickAndMortyCharactersPage() {
     )
 
   return (
-    <main className='flex h-screen w-screen flex-col items-center overflow-hidden p-20'>
-      <div className='flex size-full flex-wrap place-items-stretch items-stretch gap-4 overflow-y-auto overflow-x-hidden'>
+    <main className='flex h-screen w-full flex-col items-center overflow-hidden md:p-20'>
+      <div className='flex size-full flex-wrap gap-4 overflow-y-auto overflow-x-hidden'>
         {fetchData.results.map((characterData: Character, index: number) => (
           <CharacterOverviewCard key={index} characterData={characterData} />
         ))}
       </div>
 
-      <div className='flex w-80 flex-row items-center justify-center gap-4'>
+      <div className='flex w-full flex-row items-center justify-center gap-4 md:w-80'>
         <Button
           disabled={!fetchData.info.prev}
           variant={'ghost'}

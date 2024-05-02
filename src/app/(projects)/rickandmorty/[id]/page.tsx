@@ -34,8 +34,12 @@ export default async function RickAndMortyCharacterPage({
   if (!locationData) return <></>
 
   return (
-    <main className='flex h-screen w-screen flex-col items-center justify-center gap-4 overflow-hidden p-4'>
-      <div className='flex w-80 flex-row items-center justify-center gap-4'>
+    <main className='flex h-[calc(100dvh)] flex-col justify-between gap-4 overflow-hidden md:justify-center md:p-4'>
+      <CharacterCard
+        characterData={characterData}
+        locationData={locationData}
+      />
+      <div className='flex h-fit w-full flex-row items-center justify-center gap-4 md:w-80'>
         <Button disabled={characterId <= 1} variant={'ghost'}>
           <Link href={'/rickandmorty/1'}>
             <ArrowLeftToLineIcon className='size-6' />
@@ -62,10 +66,6 @@ export default async function RickAndMortyCharacterPage({
           </Button>
         </Link>
       </div>
-      <CharacterCard
-        characterData={characterData}
-        locationData={locationData}
-      />
     </main>
   )
 }

@@ -14,7 +14,7 @@ export default function RickAndMortyLayout({
   children: React.ReactNode
 }>) {
   return (
-    <div className='bg-background relative flex h-screen flex-col items-center overflow-hidden '>
+    <div className='bg-background relative flex w-screen flex-col'>
       {children}
     </div>
   )

@@ -23,16 +23,16 @@ export const CharacterOverviewCard: FC<CharacterOverviewCardProps> = ({
           : characterData.gender.toLowerCase() === 'female'
             ? 'shadow-purple-500/40'
             : 'shadow-yellow-500/40',
-        'text-card-foreground group relative size-80 overflow-hidden shadow-lg transition-all duration-300 ease-in-out'
+        'text-card-foreground group relative w-screen overflow-hidden shadow-lg transition-all duration-300 ease-in-out md:size-80'
       )}
     >
       <Link href={`/rickandmorty/${characterData.id}`}>
         <Image
           src={characterData.image}
           alt='image'
-          width={500}
-          height={500}
-          className='size-80 rounded-lg object-cover transition-all duration-300 ease-in-out group-hover:scale-105'
+          width={600}
+          height={600}
+          className='w-full rounded-lg object-cover transition-all duration-300 ease-in-out group-hover:scale-105 md:size-80'
         />
         <h1 className='bg-card/60 text-card-foreground group-hover:bg-card/80 absolute bottom-0 w-full py-1 text-center font-semibold transition-all duration-300 ease-in-out'>
           {characterData.name}
