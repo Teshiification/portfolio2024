@@ -23,6 +23,8 @@ export default function RickAndMortyCharactersPage() {
     `https://rickandmortyapi.com/api/character`
   )
 
+  const [page, setPage] = useState<Number>(1)
+
   useEffect(() => {
     async function fetchData() {
       try {
@@ -54,12 +56,13 @@ export default function RickAndMortyCharactersPage() {
         ))}
       </div>
 
-      <div className='flex w-full flex-row items-center justify-center gap-4 md:w-80'>
+      <div className='relative flex w-full flex-row items-center justify-center gap-4 md:w-80'>
         <Button
           disabled={!fetchData.info.prev}
           variant={'ghost'}
           onClick={() => {
             setFetchUrl(fetchData.info.prev || '')
+            setPage(Number(page) - 1)
           }}
         >
           <ArrowLeftIcon className='size-6' />
@@ -69,10 +72,14 @@ export default function RickAndMortyCharactersPage() {
           variant={'ghost'}
           onClick={() => {
             setFetchUrl(fetchData.info.next || '')
+            setPage(Number(page) + 1)
           }}
         >
           <ArrowRightIcon className='size-6' />
         </Button>
+        <p className='absolute right-2'>
+          {page.toString()}/{fetchData.info.pages}
+        </p>
       </div>
     </main>
   )
