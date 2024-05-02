@@ -9,7 +9,7 @@ import { cn } from '@/lib/utils'
 import type { Location } from '@/types/rickandmorty/location'
 import type { Character } from '@/types/rickandmorty/people'
 
-import { Card } from '../ui/card'
+import { Card } from '@/components/ui/card'
 
 export interface CharacterCardProps {
   characterData: Character

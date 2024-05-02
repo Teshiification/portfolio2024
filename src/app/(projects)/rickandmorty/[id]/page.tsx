@@ -12,6 +12,7 @@ import { Button } from '@/components/ui/button'
 import type { Location } from '@/types/rickandmorty/location'
 import { GET } from '@/types/rickandmorty/location'
 import type { Character } from '@/types/rickandmorty/people'
+import { Skeleton } from '@/components/ui/skeleton'
 
 export default async function RickAndMortyCharacterPage({
   params
@@ -26,12 +27,22 @@ export default async function RickAndMortyCharacterPage({
   ).then((data) => data.json())
   console.log(characterData)
 
-  if (!characterData) return <></>
+  if (!characterData)
+    return (
+      <Skeleton className='h-20 w-80 overflow-hidden text-center'>
+        Loading...
+      </Skeleton>
+    )
 
   console.log(characterData.location.url)
   const locationData: Location = await GET(characterData.location.url)
 
-  if (!locationData) return <></>
+  if (!locationData)
+    return (
+      <Skeleton className='h-20 w-80 overflow-hidden text-center'>
+        Loading...
+      </Skeleton>
+    )
 
   return (
     <main className='flex h-[calc(100dvh)] flex-col justify-between gap-4 overflow-hidden md:justify-center md:p-4'>

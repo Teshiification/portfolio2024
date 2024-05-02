@@ -5,7 +5,7 @@ import type { FC } from 'react'
 import { cn } from '@/lib/utils'
 import type { Character } from '@/types/rickandmorty/people'
 
-import { Card } from '../ui/card'
+import { Card } from '@/components/ui/card'
 
 export interface CharacterOverviewCardProps {
   characterData: Character
