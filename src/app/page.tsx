@@ -1,4 +1,4 @@
-import { ClockIcon, GithubIcon } from 'lucide-react'
+import { ClockIcon, GithubIcon, LinkedinIcon } from 'lucide-react'
 import Link from 'next/link'
 
 import { Card, CardDescription, CardHeader } from '@/components/ui/card'
@@ -33,6 +33,18 @@ export default function Home() {
             About me
           </CardHeader>
           <CardDescription className='flex flex-col gap-4 p-2'>
+            <div className='flex flex-row items-center gap-4 self-center'>
+              <Link href='https://www.github.com/Teshiification'>
+                <Button className='size-12'>
+                  <GithubIcon className='size-full' />
+                </Button>
+              </Link>
+              <Link href='https://www.linkedin.com/in/danny-sinicco/'>
+                <Button className='size-12'>
+                  <LinkedinIcon className='size-full' />
+                </Button>
+              </Link>
+            </div>
             <p
               title={`Or just ${dateNow.getFullYear() - birthdayDate.getFullYear()}`}
               className='flex cursor-help items-center gap-2'
