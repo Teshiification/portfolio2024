@@ -1,10 +1,10 @@
 'use client'
 
 import {
-  GitBranchIcon,
   GithubIcon,
   GripVerticalIcon,
-  HomeIcon
+  HomeIcon,
+  LinkedinIcon
 } from 'lucide-react'
 import Link from 'next/link'
 import { useState } from 'react'
@@ -47,6 +47,11 @@ export const NavTools = () => {
         <Link href='https://www.github.com/Teshiification'>
           <Button variant={'ghost'}>
             <GithubIcon className='size-4' />
+          </Button>
+        </Link>
+        <Link href='https://www.linkedin.com/in/danny-sinicco/'>
+          <Button variant={'ghost'}>
+            <LinkedinIcon className='size-4' />
           </Button>
         </Link>
       </div>
