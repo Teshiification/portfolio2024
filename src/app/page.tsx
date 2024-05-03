@@ -2,6 +2,7 @@ import { ClockIcon, GithubIcon } from 'lucide-react'
 import Link from 'next/link'
 
 import { Card, CardDescription, CardHeader } from '@/components/ui/card'
+import { Button } from '@/components/ui/button'
 
 export default function Home() {
   const birthdayDate = new Date('04.04.1998')
@@ -79,7 +80,7 @@ export default function Home() {
             <Card className='bg-card/60 text-card-foreground hover:shadow-primary/20 jusitfy-around flex h-2/3 w-80 flex-col p-2 hover:shadow-lg md:h-3/4'>
               <Link
                 href='/rickandmorty'
-                className='flex size-full flex-col items-center justify-around'
+                className='flex size-full flex-col items-center justify-around gap-4'
               >
                 <svg
                   width='200'
@@ -107,6 +108,7 @@ export default function Home() {
                     api src: rickandmortyapi.com
                   </Link>
                 </div>
+                <Button>Go to Rickdex</Button>
               </Link>
             </Card>
           </div>
