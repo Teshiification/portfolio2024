@@ -9,9 +9,11 @@ export default function Home() {
   return (
     <main className='flex flex-col items-center justify-between'>
       <section className='relative flex h-screen w-full'>
-        <div className='text-primary-foreground absolute z-10 ml-40 mt-40 select-none text-6xl font-bold opacity-70'>
-          <h1>Danny Sinicco</h1>
-          <h2 className='text-4xl font-semibold'>Welcome to my portfolio</h2>
+        <div className='text-primary-foreground absolute z-10 ml-20 mt-40 flex select-none flex-col items-center opacity-70 md:ml-40'>
+          <h1 className='text-4xl font-bold md:text-6xl'>Danny Sinicco</h1>
+          <h2 className='text-2xl font-semibold md:text-4xl'>
+            Welcome to my portfolio
+          </h2>
         </div>
         <div
           id='hero'
@@ -29,7 +31,7 @@ export default function Home() {
           <CardHeader className='decoration-primary text-2xl font-semibold uppercase underline underline-offset-2'>
             About me
           </CardHeader>
-          <CardDescription className='flex flex-col gap-4'>
+          <CardDescription className='flex flex-col gap-4 p-2'>
             <p
               title={`Or just ${dateNow.getFullYear() - birthdayDate.getFullYear()}`}
               className='flex cursor-help items-center gap-2'
@@ -48,9 +50,13 @@ export default function Home() {
               <GithubIcon className='size-4' />
             </Link>
             <Link href='https://www.onlychill.org'>
-              🌱 Current project: OnlyChill.org an open source project
+              🌱 Current project: OnlyChill.org an open source project to track
+              your personal or organisational data.
             </Link>
-            <p>⚡ Fun fact: Programming since I&apos;m 12</p>
+            <p>
+              ⚡ I started programming when I was 12 and I still have a lot to
+              learn.
+            </p>
           </CardDescription>
         </Card>
       </section>
