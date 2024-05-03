@@ -1,14 +1,24 @@
-import { ClockIcon, GithubIcon, LinkedinIcon } from 'lucide-react'
+import {
+  ClockIcon,
+  GithubIcon,
+  LinkedinIcon,
+  MessageCircleWarningIcon
+} from 'lucide-react'
 import Link from 'next/link'
 
 import { Card, CardDescription, CardHeader } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
+import { Badge } from '@/components/ui/badge'
 
 export default function Home() {
   const birthdayDate = new Date('04.04.1998')
   const dateNow = new Date()
   return (
     <main className='flex flex-col items-center justify-between'>
+      <Badge className='absolute top-4 z-50 text-lg'>
+        <MessageCircleWarningIcon className='size-4' />
+        Page still in work
+      </Badge>
       <section className='relative flex h-screen w-full'>
         <div className='text-primary-foreground absolute z-10 ml-20 mt-40 flex select-none flex-col items-center opacity-70 md:ml-40'>
           <h1 className='text-4xl font-bold md:text-6xl'>Danny Sinicco</h1>
