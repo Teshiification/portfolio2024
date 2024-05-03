@@ -1,6 +1,11 @@
 'use client'
 
-import { GitBranchIcon, GripVerticalIcon, HomeIcon } from 'lucide-react'
+import {
+  GitBranchIcon,
+  GithubIcon,
+  GripVerticalIcon,
+  HomeIcon
+} from 'lucide-react'
 import Link from 'next/link'
 import { useState } from 'react'
 
@@ -33,15 +38,17 @@ export const NavTools = () => {
           expand ? 'visible size-full' : 'hidden size-4'
         )}
       >
-        <Button variant={'ghost'}>
-          <Link href='/'>
+        <Link href='/'>
+          <Button variant={'ghost'}>
             <HomeIcon className='size-4' />
-          </Link>
-        </Button>
+          </Button>
+        </Link>
         <ThemeToggle />
-        <Button variant={'ghost'}>
-          <GitBranchIcon className='size-4' />
-        </Button>
+        <Link href='https://www.github.com/Teshiification'>
+          <Button variant={'ghost'}>
+            <GithubIcon className='size-4' />
+          </Button>
+        </Link>
       </div>
     </div>
   )
