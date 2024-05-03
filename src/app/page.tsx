@@ -55,17 +55,14 @@ export default function Home() {
                 (or just {dateNow.getFullYear() - birthdayDate.getFullYear()})
               </p>
             </p>
-            <Link
-              href='https://www.github.com/Teshiification'
-              className='flex items-center gap-2'
-            >
+            <p className='flex items-center gap-2'>
               👨‍💻 All of my projects are available at GitHub
               <GithubIcon className='size-4' />
-            </Link>
-            <Link href='https://www.onlychill.org'>
+            </p>
+            <p>
               🌱 Current project: OnlyChill.org an open source project to track
               your personal or organisational data.
-            </Link>
+            </p>
             <p>
               ⚡ I started programming when I was 12 and I still have a lot to
               learn.
