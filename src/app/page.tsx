@@ -55,17 +55,17 @@ export default function Home() {
                 (or just {dateNow.getFullYear() - birthdayDate.getFullYear()})
               </p>
             </p>
-            <p className='flex items-center gap-2'>
-              👨‍💻 All of my projects are available at GitHub
-              <GithubIcon className='size-4' />
-            </p>
-            <p>
-              🌱 Current project: OnlyChill.org an open source project to track
-              your personal or organisational data.
-            </p>
             <p>
               ⚡ I started programming when I was 12 and I still have a lot to
               learn.
+            </p>
+            <p className='flex items-center gap-2'>
+              <GithubIcon className='size-4' />
+              Most of my projects are available at GitHub
+            </p>
+            <p>
+              🌱 Current project: onlychill.org an open source project to track
+              your personal or organisational data.
             </p>
           </CardDescription>
         </Card>
