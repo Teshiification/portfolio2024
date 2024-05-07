@@ -26,18 +26,21 @@ export default function Home() {
             Welcome to my portfolio
           </h2>
         </div>
-        <div
-          id='hero'
-          className='h-full w-screen opacity-80 blur-sm'
-          style={{
-            backgroundImage: `url(/images/portraits/landscape.jpg)`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-            backgroundBlendMode: 'multiply'
-          }}
-        />
+        <div className='relative h-full w-screen'>
+          <div className='from-primary/40 absolute size-full bg-gradient-to-t' />
+          <div
+            id='hero'
+            className='size-full'
+            style={{
+              backgroundImage: `url(/images/portraits/me_woodpanels.jpg)`,
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+              backgroundBlendMode: 'multiply'
+            }}
+          />
+        </div>
       </section>
-      <section className='relative flex h-screen w-full flex-col items-center justify-center overflow-hidden'>
+      <section className='from-primary/40 relative flex h-screen w-full flex-col items-center justify-center overflow-hidden bg-gradient-to-b'>
         <Card className='absolute z-10 mx-2 flex size-fit flex-col items-center py-10'>
           <CardHeader className='decoration-primary text-2xl font-semibold uppercase underline underline-offset-2'>
             About me
