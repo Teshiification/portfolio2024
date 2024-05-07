@@ -38,7 +38,7 @@ export default function Home() {
         />
       </section>
       <section className='relative flex h-screen w-full flex-col items-center justify-center overflow-hidden'>
-        <Card className='absolute z-10 flex size-full flex-col items-center py-10'>
+        <Card className='absolute z-10 mx-2 flex size-fit flex-col items-center py-10'>
           <CardHeader className='decoration-primary text-2xl font-semibold uppercase underline underline-offset-2'>
             About me
           </CardHeader>
@@ -75,7 +75,7 @@ export default function Home() {
             </p>
             <p>
               🌱 Current project: onlychill.org an open source project to track
-              your personal or organisational data.
+              your personal or organizational data.
             </p>
           </CardDescription>
         </Card>
@@ -96,7 +96,7 @@ export default function Home() {
             My Projects
           </h1>
           <div className='flex size-full flex-col items-center justify-center gap-4 overflow-x-auto px-4 md:flex-row'>
-            <Card className='bg-card/60 text-card-foreground hover:shadow-primary/20 jusitfy-around flex h-2/3 w-80 flex-col p-2 hover:shadow-lg md:h-3/4'>
+            <Card className='bg-card/60 jusitfy-around flex h-2/3 w-80 flex-col p-2 md:h-3/4'>
               <Link
                 href='/rickandmorty'
                 className='flex size-full flex-col items-center justify-around gap-4'
