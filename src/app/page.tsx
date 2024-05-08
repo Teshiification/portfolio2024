@@ -84,7 +84,7 @@ export default function Home() {
         </Card>
       </section>
       <section className='relative flex h-screen w-full flex-col items-center justify-center overflow-hidden'>
-        <div
+        {/* <div
           id='project'
           className='h-full w-screen opacity-80 blur-lg'
           style={{
@@ -93,7 +93,7 @@ export default function Home() {
             backgroundPosition: 'center',
             backgroundBlendMode: 'multiply'
           }}
-        />
+        /> */}
         <div className='absolute z-10 flex size-full flex-col items-center gap-4 py-10'>
           <h1 className='decoration-primary text-2xl font-semibold uppercase underline underline-offset-2'>
             My Projects
