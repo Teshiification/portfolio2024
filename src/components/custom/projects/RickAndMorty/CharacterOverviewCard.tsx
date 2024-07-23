@@ -23,7 +23,7 @@ export const CharacterOverviewCard: FC<CharacterOverviewCardProps> = ({
           : characterData.gender.toLowerCase() === 'female'
             ? 'shadow-purple-500/40'
             : 'shadow-yellow-500/40',
-        'text-card-foreground group relative w-screen overflow-hidden shadow-lg transition-all duration-300 ease-in-out md:size-80'
+        'text-primary group relative w-screen overflow-hidden shadow-lg transition-all duration-300 ease-in-out md:size-80'
       )}
     >
       <Link href={`/rickandmorty/${characterData.id}`}>

@@ -45,7 +45,7 @@ export default async function RickAndMortyCharacterPage({
     )
 
   return (
-    <main className='flex flex-col items-center justify-between gap-4 overflow-hidden md:justify-center md:p-4'>
+    <main className='m-auto flex flex-col items-center justify-between gap-4 overflow-hidden md:justify-center md:p-4'>
       <CharacterCard
         characterData={characterData}
         locationData={locationData}
