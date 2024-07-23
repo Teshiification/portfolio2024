@@ -5,8 +5,9 @@ import { useTheme } from 'next-themes'
 import * as React from 'react'
 
 import { Button } from '@/components/ui/button'
+import { cn } from '@/lib/utils'
 
-export function ThemeToggle() {
+export function ThemeToggle({ className }: { className?: string }) {
   const { setTheme, theme } = useTheme()
 
   return (
@@ -14,6 +15,7 @@ export function ThemeToggle() {
       variant='ghost'
       size='icon'
       onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}
+      className={cn(className)}
     >
       <Sun className='size-4 dark:hidden' />
       <Moon className='hidden size-4 dark:block' />

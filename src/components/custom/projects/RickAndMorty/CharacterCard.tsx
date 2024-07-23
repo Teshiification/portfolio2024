@@ -35,7 +35,7 @@ export const CharacterCard: FC<CharacterCardProps> = ({
             characterData.gender.toLowerCase() === 'male'
               ? 'shadow-green-500/40'
               : 'shadow-purple-500/40',
-            'glow:text-glow/10 bg-card text-card-foreground flex w-full select-none flex-col items-center space-y-4 pb-4 shadow-2xl'
+            'glow:text-glow/10 bg-card text-primary m-auto flex w-full select-none flex-col items-center space-y-4 pb-4 shadow-2xl'
           )}
         >
           <Image

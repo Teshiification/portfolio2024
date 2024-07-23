@@ -7,7 +7,7 @@ import {
 } from 'lucide-react'
 import Link from 'next/link'
 
-import { CharacterCard } from '@/components/RickAndMorty/CharacterCard'
+import { CharacterCard } from '@/components/custom/projects/RickAndMorty/CharacterCard'
 import { Button } from '@/components/ui/button'
 import type { Location } from '@/types/rickandmorty/location'
 import { GET } from '@/types/rickandmorty/location'
@@ -45,7 +45,7 @@ export default async function RickAndMortyCharacterPage({
     )
 
   return (
-    <main className='flex flex-col items-center justify-between gap-4 overflow-hidden md:justify-center md:p-4'>
+    <main className='m-auto flex flex-col items-center justify-between gap-4 overflow-hidden md:justify-center md:p-4'>
       <CharacterCard
         characterData={characterData}
         locationData={locationData}
