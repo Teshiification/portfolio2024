@@ -1,12 +1,26 @@
 'use client'
 
-import { ArrowLeftIcon, ArrowRightIcon } from 'lucide-react'
+import { ArrowLeftIcon, ArrowRightIcon, FilmIcon } from 'lucide-react'
 import { useEffect, useState } from 'react'
 
 import { CharacterOverviewCard } from '@/components/custom/projects/RickAndMorty/CharacterOverviewCard'
 import { Button } from '@/components/ui/button'
 import { Skeleton } from '@/components/ui/skeleton'
 import type { Character } from '@/types/rickandmorty/people'
+import { EpisodesChart } from '@/components/custom/projects/RickAndMorty/Charts/EpisodesChart'
+import { SpeciesChart } from '@/components/custom/projects/RickAndMorty/Charts/SpeciesChart'
+import { Card } from '@/components/ui/card'
+import {
+  Pagination,
+  PaginationContent,
+  PaginationEllipsis,
+  PaginationItem,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious
+} from '@/components/ui/pagination'
+import { ScrollArea } from '@/components/ui/scroll-area'
+import { Separator } from '@/components/ui/separator'
 
 export default function RickAndMortyCharactersPage() {
   const [fetchData, setFetchData] = useState<{
@@ -49,38 +63,45 @@ export default function RickAndMortyCharactersPage() {
     )
 
   return (
-    <main className='flex h-screen w-full flex-col items-center overflow-hidden md:p-20'>
-      <div className='flex size-full flex-wrap gap-4 overflow-y-auto overflow-x-hidden'>
-        {fetchData.results.map((characterData: Character, index: number) => (
-          <CharacterOverviewCard key={index} characterData={characterData} />
-        ))}
-      </div>
+    <main className='flex h-screen w-full flex-col items-center overflow-hidden pt-4 md:p-20'>
+      <ScrollArea>
+        <div className='flex flex-col pr-4 md:flex-row md:pr-0'>
+          <EpisodesChart data={fetchData.results as Character[]} />
+          <SpeciesChart data={fetchData.results as Character[]} />
+        </div>
+        <Separator className='my-10' />
+        <div className='flex flex-wrap gap-8 pb-20'>
+          {fetchData.results.map((characterData: Character, index: number) => (
+            <CharacterOverviewCard key={index} characterData={characterData} />
+          ))}
+        </div>
 
-      <div className='relative flex w-full flex-row items-center justify-center gap-4 md:w-80'>
-        <Button
-          disabled={!fetchData.info.prev}
-          variant={'ghost'}
-          onClick={() => {
-            setFetchUrl(fetchData.info.prev || '')
-            setPage(Number(page) - 1)
-          }}
-        >
-          <ArrowLeftIcon className='size-6' />
-        </Button>
-        <Button
-          disabled={!fetchData.info.next}
-          variant={'ghost'}
-          onClick={() => {
-            setFetchUrl(fetchData.info.next || '')
-            setPage(Number(page) + 1)
-          }}
-        >
-          <ArrowRightIcon className='size-6' />
-        </Button>
-        <p className='absolute right-2'>
-          {page.toString()}/{fetchData.info.pages}
-        </p>
-      </div>
+        <Card className='text-primary fixed bottom-0 flex w-full flex-row items-center justify-center gap-4 md:w-80'>
+          <Button
+            disabled={!fetchData.info.prev}
+            variant={'ghost'}
+            onClick={() => {
+              setFetchUrl(fetchData.info.prev || '')
+              setPage(Number(page) - 1)
+            }}
+          >
+            <ArrowLeftIcon className='size-6' />
+          </Button>
+          <Button
+            disabled={!fetchData.info.next}
+            variant={'ghost'}
+            onClick={() => {
+              setFetchUrl(fetchData.info.next || '')
+              setPage(Number(page) + 1)
+            }}
+          >
+            <ArrowRightIcon className='size-6' />
+          </Button>
+          <p className='absolute right-2'>
+            {page.toString()}/{fetchData.info.pages}
+          </p>
+        </Card>
+      </ScrollArea>
     </main>
   )
 }
