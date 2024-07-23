@@ -99,7 +99,7 @@ export default function Home() {
             My Projects
           </h1>
           <div className='flex size-full flex-col items-center justify-center gap-4 overflow-x-auto px-4 md:flex-row'>
-            <Card className='bg-card/60 jusitfy-around flex h-2/3 w-80 flex-col p-2 md:h-3/4'>
+            <Card className='bg-card/60 jusitfy-around flex w-80 flex-col p-2 '>
               <Link
                 href='/rickandmorty'
                 className='flex size-full flex-col items-center justify-around gap-4'

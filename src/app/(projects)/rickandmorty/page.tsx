@@ -1,6 +1,6 @@
 'use client'
 
-import { ArrowLeftIcon, ArrowRightIcon, FilmIcon } from 'lucide-react'
+import { ArrowLeftIcon, ArrowRightIcon, FilmIcon, HomeIcon } from 'lucide-react'
 import { useEffect, useState } from 'react'
 
 import { CharacterOverviewCard } from '@/components/custom/projects/RickAndMorty/CharacterOverviewCard'
@@ -21,6 +21,7 @@ import {
 } from '@/components/ui/pagination'
 import { ScrollArea } from '@/components/ui/scroll-area'
 import { Separator } from '@/components/ui/separator'
+import Link from 'next/link'
 
 export default function RickAndMortyCharactersPage() {
   const [fetchData, setFetchData] = useState<{
@@ -86,6 +87,11 @@ export default function RickAndMortyCharactersPage() {
         >
           <ArrowLeftIcon className='size-6' />
         </Button>
+        <Link href={'/'}>
+          <Button variant={'ghost'}>
+            <HomeIcon />
+          </Button>
+        </Link>
         <Button
           disabled={!fetchData.info.next}
           variant={'ghost'}
