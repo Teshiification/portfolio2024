@@ -64,7 +64,7 @@ export default function RickAndMortyCharactersPage() {
     )
 
   return (
-    <ScrollArea className='mt-12 flex w-full flex-col items-center justify-center'>
+    <ScrollArea className='mt-24 flex w-full flex-col items-center justify-center px-2'>
       <div className='flex flex-col pr-4 md:flex-row md:pr-0'>
         <EpisodesChart data={fetchData.results as Character[]} />
         <SpeciesChart data={fetchData.results as Character[]} />

@@ -7,6 +7,8 @@ import React from 'react'
 import { NavTools } from '@/components/ui/nav-tools'
 import { cn } from '@/lib/utils'
 import { ThemeProvider } from '@/components/providers'
+import { Badge } from '@/components/ui/badge'
+import { MessageCircleWarningIcon } from 'lucide-react'
 
 const fontSans = FontSans({
   subsets: ['latin'],
@@ -27,11 +29,16 @@ export default function RootLayout({
     <html lang='en' suppressHydrationWarning>
       <body
         className={cn(
-          'bg-background text-foreground min-h-screen w-screen overflow-x-hidden font-sans antialiased ',
+          'bg-background text-foreground flex min-h-screen w-screen overflow-x-hidden font-sans antialiased ',
           'scrollbar scrollbar-track-primary scrollbar-thumb-secondary scrollbar-thumb-rounded-full',
           fontSans.variable
         )}
       >
+        <Badge className='fixed left-1/2 top-4 z-50 -translate-x-1/2 gap-2 md:text-lg'>
+          <MessageCircleWarningIcon />
+          <p>Page Under Construction</p>
+        </Badge>
+
         <ThemeProvider
           attribute='class'
           defaultTheme='system'

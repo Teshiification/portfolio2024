@@ -14,7 +14,11 @@ export default function RickAndMortyLayout({
   children: React.ReactNode
 }>) {
   return (
-    <div className='bg-background relative flex h-screen w-full flex-col items-center'>
+    <div
+      className={
+        'bg-background text-foreground scrollbar scrollbar-track-primary scrollbar-thumb-secondary scrollbar-thumb-rounded-full flex min-h-screen w-screen overflow-x-hidden font-sans antialiased'
+      }
+    >
       {children}
     </div>
   )
