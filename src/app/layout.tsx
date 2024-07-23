@@ -38,7 +38,7 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <NavTools className='sticky' />
+          <NavTools />
           <div className='bg-background relative flex min-h-screen select-none flex-col'>
             {children}
           </div>
