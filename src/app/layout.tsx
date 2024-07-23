@@ -2,11 +2,11 @@ import '@/styles/globals.css'
 
 import type { Metadata } from 'next'
 import { Inter as FontSans } from 'next/font/google'
-import { ThemeProvider } from 'next-themes'
 import React from 'react'
 
 import { NavTools } from '@/components/ui/nav-tools'
 import { cn } from '@/lib/utils'
+import { ThemeProvider } from '@/components/providers'
 
 const fontSans = FontSans({
   subsets: ['latin'],
@@ -38,7 +38,7 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <NavTools />
+          <NavTools className='sticky' />
           <div className='bg-background relative flex min-h-screen select-none flex-col'>
             {children}
           </div>

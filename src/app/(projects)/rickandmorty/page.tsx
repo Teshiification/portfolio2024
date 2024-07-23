@@ -3,7 +3,7 @@
 import { ArrowLeftIcon, ArrowRightIcon } from 'lucide-react'
 import { useEffect, useState } from 'react'
 
-import { CharacterOverviewCard } from '@/components/RickAndMorty/CharacterOverviewCard'
+import { CharacterOverviewCard } from '@/components/custom/projects/RickAndMorty/CharacterOverviewCard'
 import { Button } from '@/components/ui/button'
 import { Skeleton } from '@/components/ui/skeleton'
 import type { Character } from '@/types/rickandmorty/people'

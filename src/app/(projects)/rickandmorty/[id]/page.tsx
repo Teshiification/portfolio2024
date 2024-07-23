@@ -7,7 +7,7 @@ import {
 } from 'lucide-react'
 import Link from 'next/link'
 
-import { CharacterCard } from '@/components/RickAndMorty/CharacterCard'
+import { CharacterCard } from '@/components/custom/projects/RickAndMorty/CharacterCard'
 import { Button } from '@/components/ui/button'
 import type { Location } from '@/types/rickandmorty/location'
 import { GET } from '@/types/rickandmorty/location'
