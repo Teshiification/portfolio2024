@@ -15,10 +15,6 @@ export default function Home() {
   const dateNow = new Date()
   return (
     <main className='flex flex-col items-center justify-between'>
-      <Badge className='absolute top-4 z-50 text-lg'>
-        <MessageCircleWarningIcon className='size-4' />
-        Page still in work
-      </Badge>
       <section className='relative flex h-screen w-full'>
         <div className='text-primary-foreground absolute z-10 ml-20 mt-40 flex select-none flex-col items-center opacity-70 md:ml-40'>
           <h1 className='text-4xl font-bold md:text-6xl'>Danny Sinicco</h1>
