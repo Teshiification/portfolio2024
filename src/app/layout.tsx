@@ -34,7 +34,7 @@ export default function RootLayout({
           fontSans.variable
         )}
       >
-        <Badge className='fixed left-1/2 top-4 z-50 -translate-x-1/2 gap-2 text-lg'>
+        <Badge className='fixed left-1/2 top-4 z-50 -translate-x-1/2 gap-2 md:text-lg'>
           <MessageCircleWarningIcon />
           <p>Page Under Construction</p>
         </Badge>

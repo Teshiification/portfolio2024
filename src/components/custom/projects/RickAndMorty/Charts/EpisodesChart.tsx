@@ -23,7 +23,7 @@ export const EpisodesChart = ({ data }: { data: Character[] }) => {
   return (
     <ChartContainer
       config={chartConfigEpisodes}
-      className='min-h-[200px] w-full'
+      className='max-h-[400px] min-h-[200px] w-full'
     >
       <BarChart accessibilityLayer data={chartDataEpsiodes}>
         <CartesianGrid vertical={false} />

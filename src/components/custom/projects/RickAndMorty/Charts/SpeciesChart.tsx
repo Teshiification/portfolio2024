@@ -55,7 +55,7 @@ export const SpeciesChart = ({ data }: { data: Character[] }) => {
   return (
     <ChartContainer
       config={chartConfigSpecies}
-      className='m-auto h-[200px] w-full'
+      className='m-auto flex max-h-[400px] min-h-[200px] w-full overflow-visible'
     >
       <PieChart accessibilityLayer data={chartDataSpecies}>
         <Pie
