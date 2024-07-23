@@ -1,3 +1,4 @@
+/* eslint-disable tailwindcss/no-unnecessary-arbitrary-value */
 'use client'
 
 import * as AlertDialogPrimitive from '@radix-ui/react-alert-dialog'
