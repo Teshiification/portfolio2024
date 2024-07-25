@@ -36,7 +36,7 @@ export default function RootLayout({
       >
         <Badge className='fixed left-1/2 top-4 z-50 -translate-x-1/2 gap-2 md:text-lg'>
           <MessageCircleWarningIcon />
-          <p>Page Under Construction</p>
+          <p>Page under construction</p>
         </Badge>
 
         <ThemeProvider
@@ -46,7 +46,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <NavTools />
-          <div className='bg-background relative flex min-h-screen select-none flex-col'>
+          <div className='bg-background relative flex min-h-screen w-full select-none flex-col'>
             {children}
           </div>
         </ThemeProvider>
