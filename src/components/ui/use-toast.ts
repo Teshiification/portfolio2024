@@ -1,3 +1,6 @@
+/* eslint-disable @typescript-eslint/no-use-before-define */
+/* eslint-disable @typescript-eslint/no-shadow */
+
 'use client'
 
 // Inspired by react-hot-toast library
@@ -71,7 +74,9 @@ const addToRemoveQueue = (toastId: string) => {
   toastTimeouts.set(toastId, timeout)
 }
 
+// eslint-disable-next-line consistent-return
 export const reducer = (state: State, action: Action): State => {
+  // eslint-disable-next-line default-case
   switch (action.type) {
     case 'ADD_TOAST':
       return {
@@ -130,7 +135,7 @@ const listeners: Array<(state: State) => void> = []
 
 let memoryState: State = { toasts: [] }
 
-function dispatch(action: Action) {
+const dispatch = (action: Action) => {
   memoryState = reducer(memoryState, action)
   listeners.forEach((listener) => {
     listener(memoryState)
@@ -139,7 +144,7 @@ function dispatch(action: Action) {
 
 type Toast = Omit<ToasterToast, 'id'>
 
-function toast({ ...props }: Toast) {
+const toast = ({ ...props }: Toast) => {
   const id = genId()
 
   const update = (props: ToasterToast) =>
@@ -168,7 +173,7 @@ function toast({ ...props }: Toast) {
   }
 }
 
-function useToast() {
+const useToast = () => {
   const [state, setState] = React.useState<State>(memoryState)
 
   React.useEffect(() => {

@@ -1,14 +1,14 @@
 import '@/styles/globals.css'
 
+import { MessageCircleWarningIcon } from 'lucide-react'
 import type { Metadata } from 'next'
 import { Inter as FontSans } from 'next/font/google'
 import React from 'react'
 
-import { NavTools } from '@/components/ui/nav-tools'
-import { cn } from '@/lib/utils'
 import { ThemeProvider } from '@/components/providers'
 import { Badge } from '@/components/ui/badge'
-import { MessageCircleWarningIcon } from 'lucide-react'
+import { NavTools } from '@/components/ui/nav-tools'
+import { cn } from '@/lib/utils'
 
 const fontSans = FontSans({
   subsets: ['latin'],
@@ -46,7 +46,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <NavTools />
-          <div className='bg-background relative flex min-h-screen w-full select-none flex-col'>
+          <div className='relative flex min-h-screen w-full select-none flex-col'>
             {children}
           </div>
         </ThemeProvider>

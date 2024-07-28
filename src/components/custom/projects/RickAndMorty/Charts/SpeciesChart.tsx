@@ -1,44 +1,56 @@
+import { Cell, Pie, PieChart } from 'recharts'
+
+import type { ChartConfig } from '@/components/ui/chart'
 import {
-  ChartConfig,
   ChartContainer,
   ChartTooltip,
   ChartTooltipContent
 } from '@/components/ui/chart'
-import { Character } from '@/types/rickandmorty/people'
-import { Cell, Pie, PieChart } from 'recharts'
+import type { Character } from '@/types/rickandmorty/people'
 
 export const SpeciesChart = ({ data }: { data: Character[] }) => {
-  type SpeciesType = 'Human' | 'Alien' | 'Robot' | 'Other'
+  type SpeciesType =
+    | 'Human'
+    | 'Alien'
+    | 'Robot'
+    | 'Mythological Creature'
+    | 'Humanoid'
+    | 'Disease'
+    | 'Other'
   const speciesCount: { [key: string]: number } = {}
 
   // Define color mapping
   const speciesColors: Record<SpeciesType, string> = {
-    Human: '#ff7300',
-    Alien: '#387908',
-    Robot: '#9b8e23',
-    Other: '#ff6f61'
+    Human: 'darksalmon',
+    Alien: 'green',
+    Robot: 'grey',
+    'Mythological Creature': 'purple',
+    Disease: 'lightgreen',
+    Humanoid: 'pink',
+    Other: 'lightgrey'
   }
 
   // Iterate through each character
   data.forEach((character: Character) => {
-    const species = character.species
-
+    const { species } = character
     // Increment the count for the species
     if (speciesCount[species]) {
-      speciesCount[species]++
+      speciesCount[species] += 1
     } else {
       speciesCount[species] = 1
     }
   })
 
   // Convert the result into an array of objects
-  const chartDataSpecies = Object.keys(speciesCount).map((species) => ({
-    species:
-      (species as SpeciesType) in speciesColors
-        ? (species as SpeciesType)
-        : 'Other',
-    count: speciesCount[species]
-  }))
+  const chartDataSpecies = Object.keys(speciesCount)
+    .map((species) => ({
+      species:
+        (species as SpeciesType) in speciesColors
+          ? (species as SpeciesType)
+          : 'Other',
+      count: speciesCount[species]
+    }))
+    .flat()
 
   const chartConfigSpecies = {
     species: {
@@ -49,7 +61,7 @@ export const SpeciesChart = ({ data }: { data: Character[] }) => {
 
   // Function to get color based on species
   const getColor = (species: SpeciesType): string => {
-    return speciesColors[species] || speciesColors['Other']
+    return speciesColors[species] || speciesColors.Other
   }
 
   return (

@@ -1,6 +1,8 @@
 'use server'
-import { cn } from '@/lib/utils'
+
 import Image from 'next/image'
+
+import { cn } from '@/lib/utils'
 
 // Function to generate a random integer within a range
 const getRandomInt = (min: number, max: number) =>

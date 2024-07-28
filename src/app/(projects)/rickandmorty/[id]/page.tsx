@@ -9,10 +9,10 @@ import Link from 'next/link'
 
 import { CharacterCard } from '@/components/custom/projects/RickAndMorty/CharacterCard'
 import { Button } from '@/components/ui/button'
+import { Skeleton } from '@/components/ui/skeleton'
 import type { Location } from '@/types/rickandmorty/location'
 import { GET } from '@/types/rickandmorty/location'
 import type { Character } from '@/types/rickandmorty/people'
-import { Skeleton } from '@/components/ui/skeleton'
 
 export default async function RickAndMortyCharacterPage({
   params
