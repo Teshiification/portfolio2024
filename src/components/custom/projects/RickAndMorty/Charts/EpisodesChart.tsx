@@ -1,11 +1,12 @@
+import { Bar, BarChart, CartesianGrid, XAxis, YAxis } from 'recharts'
+
+import type { ChartConfig } from '@/components/ui/chart'
 import {
-  ChartConfig,
   ChartContainer,
   ChartTooltip,
   ChartTooltipContent
 } from '@/components/ui/chart'
-import { Character } from '@/types/rickandmorty/people'
-import { Bar, BarChart, CartesianGrid, XAxis, YAxis } from 'recharts'
+import type { Character } from '@/types/rickandmorty/people'
 
 export const EpisodesChart = ({ data }: { data: Character[] }) => {
   const chartDataEpsiodes = data.map((character: Character) => ({

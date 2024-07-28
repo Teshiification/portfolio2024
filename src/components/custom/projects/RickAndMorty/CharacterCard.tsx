@@ -5,11 +5,10 @@ import type { FC } from 'react'
 import { FaGenderless } from 'react-icons/fa'
 import { IoMdFemale, IoMdMale } from 'react-icons/io'
 
+import { Card } from '@/components/ui/card'
 import { cn } from '@/lib/utils'
 import type { Location } from '@/types/rickandmorty/location'
 import type { Character } from '@/types/rickandmorty/people'
-
-import { Card } from '@/components/ui/card'
 
 export interface CharacterCardProps {
   characterData: Character

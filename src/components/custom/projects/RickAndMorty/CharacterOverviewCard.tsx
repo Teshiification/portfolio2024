@@ -2,10 +2,9 @@ import Image from 'next/image'
 import Link from 'next/link'
 import type { FC } from 'react'
 
+import { Card } from '@/components/ui/card'
 import { cn } from '@/lib/utils'
 import type { Character } from '@/types/rickandmorty/people'
-
-import { Card } from '@/components/ui/card'
 
 export interface CharacterOverviewCardProps {
   characterData: Character
@@ -34,7 +33,7 @@ export const CharacterOverviewCard: FC<CharacterOverviewCardProps> = ({
           height={600}
           className='w-full rounded-lg object-cover transition-all duration-300 ease-in-out group-hover:scale-105 md:size-80'
         />
-        <h1 className='bg-card/80 text-primary group-hover:bg-card/80 absolute bottom-0 w-full py-1 text-center font-semibold transition-all duration-300 ease-in-out'>
+        <h1 className='absolute bottom-0 w-full bg-card/80 py-1 text-center font-semibold text-primary transition-all duration-300 ease-in-out group-hover:bg-card/80'>
           {characterData.name}
         </h1>
       </Link>
