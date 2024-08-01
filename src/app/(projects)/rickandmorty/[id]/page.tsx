@@ -51,7 +51,7 @@ export default async function RickAndMortyCharacterPage({
     )
 
   return (
-    <main className='m-auto flex flex-col items-center justify-between gap-4 overflow-hidden md:justify-center md:p-4'>
+    <main className='m-auto h-screen justify-center flex flex-col items-center gap-4 overflow-hidden md:justify-center md:p-4'>
       <Image
         src={characterData.image}
         alt='portrait'
@@ -71,8 +71,7 @@ export default async function RickAndMortyCharacterPage({
       
        <h1 className='text-2xl font-semibold'>{`#${characterData.id} ${characterData.name}`}</h1>
       </CardHeader> 
-      <CardContent>
-
+      <CardContent className='w-full md:w-fit'>
           <p className='flex flex-row items-center gap-4'>
             {
               // eslint-disable-next-line no-nested-ternary
