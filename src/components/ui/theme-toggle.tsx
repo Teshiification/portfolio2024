@@ -17,6 +17,9 @@ export function ThemeToggle({ className }: { className?: string }) {
       onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}
       className={cn(className)}
     >
+      <p className='not-sr-only mr-4 capitalize'>
+        {theme === 'light' ? 'dark' : 'light'}
+      </p>
       <Sun className='size-4 dark:hidden' />
       <Moon className='hidden size-4 dark:block' />
       <span className='sr-only'>Toggle theme</span>

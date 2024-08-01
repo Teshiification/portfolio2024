@@ -5,15 +5,14 @@ import {
   GripVerticalIcon,
   HomeIcon,
   InfoIcon,
-  LinkedinIcon
+  LinkedinIcon,
+  SidebarCloseIcon
 } from 'lucide-react'
 import Link from 'next/link'
 import { useState } from 'react'
 
-import { cn } from '@/lib/utils'
 
 import { Button } from './button'
-import { Card } from './card'
 import { Separator } from './separator'
 import { ThemeToggle } from './theme-toggle'
 import {
@@ -22,41 +21,43 @@ import {
   TooltipProvider,
   TooltipTrigger
 } from './tooltip'
+import { Sheet, SheetClose, SheetContent, SheetDescription, SheetFooter, SheetHeader, SheetTitle, SheetTrigger } from './sheet'
 
-export const NavTools = ({ className }: { className?: string }) => {
-  const [expand, setExpand] = useState<boolean>(false)
+export const NavTools = () => {
 
   return (
-    <Card
-      className={cn(
-        'fixed right-4 top-4 z-50 flex size-fit flex-col overflow-hidden transition-all duration-300 ease-in-out',
-        expand ? 'bg-background' : 'bg-transparent',
-        className
-      )}
-    >
-      <TooltipProvider>
-        <Button
+    <TooltipProvider>
+
+<Sheet>
+      <SheetTrigger asChild>
+      <Button
           variant={'default'}
-          onClick={() => {
-            setExpand(!expand)
-          }}
-          className={expand ? 'rounded-b-none' : 'rounded-b-lg'}
+          className='fixed right-4 top-4 z-50'
         >
           <GripVerticalIcon className='size-4' />
         </Button>
+      </SheetTrigger>
+      <SheetContent className='flex flex-col'>
+        <SheetHeader>
+          <SheetTitle>Menu</SheetTitle>
+          <SheetDescription>
+            Some quicklinks to navigate through this website!
+          </SheetDescription>
+        </SheetHeader>
+        
         <div
-          className={cn(
-            'flex flex-col items-center transition-all duration-300 ease-in-out',
-            expand ? 'visible' : 'hidden'
-          )}
+          className={
+            'flex flex-col gap-4 size-full items-center'
+          }
         >
           <Tooltip>
-            <TooltipTrigger>
+            <TooltipTrigger
+            className='w-full'>
               <Link href='/'>
                 <Button
                   variant={'ghost'}
-                  className='rounded-none hover:bg-primary/10'
-                >
+                  className='w-full gap-4'>
+                  <p className='not-sr-only'>Home</p>
                   <HomeIcon className='size-4 ' />
                 </Button>
               </Link>
@@ -65,19 +66,22 @@ export const NavTools = ({ className }: { className?: string }) => {
           </Tooltip>
           <Separator className='bg-secondary' />
           <Tooltip>
-            <TooltipTrigger>
-              <ThemeToggle className='hover:bg-primary/10' />
+            <TooltipTrigger
+            className='w-full'>
+              <ThemeToggle className='w-full' />
             </TooltipTrigger>
             <TooltipContent>Toggle Theme</TooltipContent>
           </Tooltip>
           <Separator className='bg-secondary' />
           <Tooltip>
-            <TooltipTrigger>
+            <TooltipTrigger
+            className='w-full'>
               <Link href='https://www.github.com/Teshiification'>
                 <Button
                   variant={'ghost'}
-                  className='rounded-none hover:bg-primary/10'
+                  className='w-full gap-4'
                 >
+                  <p className='not-sr-only'>Github</p>
                   <GithubIcon className='size-4' />
                 </Button>
               </Link>
@@ -86,34 +90,44 @@ export const NavTools = ({ className }: { className?: string }) => {
           </Tooltip>
           <Separator className='bg-secondary' />
           <Tooltip>
-            <TooltipTrigger>
+            <TooltipTrigger
+            className='w-full'>
               <Link href='https://www.linkedin.com/in/danny-sinicco/'>
                 <Button
                   variant={'ghost'}
-                  className='rounded-none hover:bg-primary/10'
+                  className='w-full gap-4'
                 >
+                  <p className='not-sr-only'>Linkedin</p>
                   <LinkedinIcon className='size-4' />
                 </Button>
               </Link>
             </TooltipTrigger>
             <TooltipContent>Linkedin</TooltipContent>
           </Tooltip>
-          <Tooltip>
-            <TooltipTrigger>
+        
+        </div>
+        <SheetFooter className='flex items-center gap-4'>
+        <Tooltip>
+            <TooltipTrigger
+            className='w-fit'>
               <Link href='/impressum'>
                 <Button
                   variant={'ghost'}
-                  className='flex gap-2 rounded-none hover:bg-primary/10'
+                  className='flex gap-4 w-fit'
                 >
-                  <InfoIcon className='size-4' />
                   <p>Impressum</p>
+                  <InfoIcon className='size-4' />
                 </Button>
               </Link>
             </TooltipTrigger>
             <TooltipContent>Impressum</TooltipContent>
           </Tooltip>
-        </div>
-      </TooltipProvider>
-    </Card>
+         <p className='text-xs'> {`© Danny Sinicco 2020 - ` +new Date().getFullYear()}</p>
+        </SheetFooter>
+      </SheetContent>
+    </Sheet>
+    </TooltipProvider>
+
+   
   )
 }
