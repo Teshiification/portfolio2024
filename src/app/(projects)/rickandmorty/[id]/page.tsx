@@ -7,29 +7,28 @@ import {
   GlobeIcon,
   HomeIcon
 } from 'lucide-react'
+import Image from 'next/image'
 import Link from 'next/link'
+import { FaGenderless } from 'react-icons/fa'
+import { IoMdFemale, IoMdMale } from 'react-icons/io'
 
-import { CharacterCard } from '@/components/custom/projects/RickAndMorty/CharacterCard/CharacterCard'
 import { Button } from '@/components/ui/button'
+import { Card, CardContent, CardHeader } from '@/components/ui/card'
 import { Skeleton } from '@/components/ui/skeleton'
 import type { Location } from '@/types/rickandmorty/location'
 import { GET } from '@/types/rickandmorty/location'
 import type { Character } from '@/types/rickandmorty/people'
-import Image from 'next/image'
-import { IoMdFemale, IoMdMale } from 'react-icons/io'
-import { FaGenderless } from 'react-icons/fa'
-import { Card, CardContent, CardHeader } from '@/components/ui/card'
 
 export default async function RickAndMortyCharacterPage({
   params
 }: {
-  params: any
+  params: { id: number }
 }) {
   const { id } = params
 
-  const characterId: number = Number(id)
+  const characterId: number = id
   const characterData: Character = await fetch(
-    `${process.env.RICKANDMORTY_API_KEY}/character/${characterId}`
+    `https://rickandmortyapi.com/api/character/${characterId}`
   ).then((data) => data.json())
   console.log(characterData)
 
@@ -51,22 +50,22 @@ export default async function RickAndMortyCharacterPage({
     )
 
   return (
-    <main className='w-full h-screen bg-lime-950 justify-center flex flex-col items-center gap-4 overflow-hidden md:justify-center md:p-4'>
+    <main className='flex h-screen w-full flex-col items-center justify-center gap-4 overflow-hidden bg-lime-950 md:justify-center md:p-4'>
       <Image
         src={characterData.image}
         alt='portraitbackground'
         width={600}
         height={600}
-        className='absolute z-0 object-cover h-full w-full right-0 blur-md'
+        className='absolute right-0 z-0 size-full object-cover blur-md'
       />
-      <Card className='absolute z-20 h-80 md:h-1/2 md:w-1/2 bg-opacity-20 flex flex-col gap-10 items-center backdrop-blur-sm'>
-        <CardHeader className='w-full relative items-center flex'>
+      <Card className='absolute z-20 flex h-80 flex-col items-center gap-10 bg-opacity-20 backdrop-blur-sm md:size-1/2'>
+        <CardHeader className='relative flex w-full items-center'>
           <Image
             src={characterData.image}
             alt='portrait'
             width={600}
             height={600}
-            className='absolute top-4 left-4 rounded-full object-cover size-40'
+            className='absolute left-4 top-4 size-40 rounded-full object-cover'
           />
           <h1 className='text-2xl font-semibold'>{`#${characterData.id} ${characterData.name}`}</h1>
         </CardHeader>

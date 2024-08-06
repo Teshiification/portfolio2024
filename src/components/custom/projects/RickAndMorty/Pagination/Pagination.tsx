@@ -38,7 +38,7 @@ export const Pagination = ({
           scrollToTop()
           Router.push({
             pathname: '/rickandmorty',
-            query: { page: page - 1 }
+            query: { page: (page - 1).toString() }
           })
         }}
       >
@@ -56,14 +56,14 @@ export const Pagination = ({
           scrollToTop()
           Router.push({
             pathname: '/rickandmorty',
-            query: { page: page + 1 }
+            query: { page: (page + 1).toString() }
           })
         }}
       >
         <ArrowRightIcon className='size-6' />
       </Button>
       <p className='absolute right-2'>
-        {page.toString()}/{info.pages}
+        {page}/{info.pages}
       </p>
     </Card>
   )

@@ -1,36 +1,42 @@
+'use client'
+
+import { useEffect, useState } from 'react'
+
 import {
   CharacterOverviewCard,
   EpisodesChart,
-  Pagination,
   SpeciesChart
-} from '@/components'
+} from '@/components/custom/projects/RickAndMorty'
 import { ScrollArea } from '@/components/ui/scroll-area'
 import { Separator } from '@/components/ui/separator'
 import type { Character } from '@/types/rickandmorty/people'
 
-export default async function RickAndMortyCharactersPage({
+export default function RickAndMortyPage({
   searchParams
 }: {
-  searchParams: { [key: string]: string | string[] | undefined }
+  searchParams: { page?: string }
 }) {
-  const page = Number(searchParams?.page) || 1
+  // Extract page number from searchParams and default to 1 if not provided
+  const page = parseInt(searchParams.page || '1', 10)
 
   async function fetchData() {
+    const url = `https://rickandmortyapi.com/api/character/?page=${page}`
+    console.log(url)
     try {
-      const url = `${process.env.RICKANDMORTY_API_URL}/character/?page=${page}`
-      const response = await fetch(url)
+      const response = await fetch(url, {
+        next: { revalidate: 10 }
+      })
       if (!response.ok) {
-        throw new Error(`Failed to fetch data: ${url}`)
+        throw new Error(`Failed to fetch data: ${response.statusText}`)
       }
-      const data = await response.json()
-      return data
+      return await response.json()
     } catch (error) {
-      console.error('Error fetching data:', error)
+      console.error('Fetch data error:', error)
       return null
     }
   }
 
-  const data: {
+  const [data, setData] = useState<{
     info: {
       count: number
       pages: number
@@ -38,25 +44,27 @@ export default async function RickAndMortyCharactersPage({
       prev: string | null
     }
     results: Character[]
-  } = await fetchData()
+  } | null>(null)
 
-  if (!data) {
-    return <div>Error loading data</div>
-  }
+  useEffect(() => {
+    fetchData().then((d) => {
+      setData(d)
+    })
+  }, [page])
 
   return (
     <ScrollArea className='mt-24 flex w-full flex-col items-center justify-center'>
       <div className='flex flex-col pr-4 md:flex-row md:pr-0'>
-        <EpisodesChart data={data.results} />
-        <SpeciesChart data={data.results} />
+        <EpisodesChart data={data?.results} />
+        <SpeciesChart data={data?.results} />
       </div>
       <Separator className='my-10' />
       <div className='flex w-full flex-wrap items-center justify-center gap-8 pb-20'>
-        {data.results.map((characterData: Character, index: number) => (
+        {data?.results.map((characterData: Character, index: number) => (
           <CharacterOverviewCard key={index} characterData={characterData} />
         ))}
       </div>
-      <Pagination page={page} info={data.info} />
+      {/* <Pagination page={page} info={data?.info} /> */}
     </ScrollArea>
   )
 }
