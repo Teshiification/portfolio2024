@@ -9,7 +9,7 @@ import {
 } from 'lucide-react'
 import Link from 'next/link'
 
-import { CharacterCard } from '@/components/custom/projects/RickAndMorty/CharacterCard'
+import { CharacterCard } from '@/components/custom/projects/RickAndMorty/CharacterCard/CharacterCard'
 import { Button } from '@/components/ui/button'
 import { Skeleton } from '@/components/ui/skeleton'
 import type { Location } from '@/types/rickandmorty/location'
@@ -51,27 +51,26 @@ export default async function RickAndMortyCharacterPage({
     )
 
   return (
-    <main className='m-auto h-screen justify-center flex flex-col items-center gap-4 overflow-hidden md:justify-center md:p-4'>
+    <main className='w-full h-screen bg-lime-950 justify-center flex flex-col items-center gap-4 overflow-hidden md:justify-center md:p-4'>
       <Image
         src={characterData.image}
-        alt='portrait'
+        alt='portraitbackground'
         width={600}
         height={600}
-        className='absolute z-10 object-cover h-full left-0'
+        className='absolute z-0 object-cover h-full w-full right-0 blur-md'
       />
-      <Image
-        src={characterData.image}
-        alt='portrait'
-        width={600}
-        height={600}
-        className='absolute z-0 object-cover h-full w-full right-0 blur-md opacity-20'
-      />
-      <Card className='absolute z-20 w-fit h-fit flex flex-col gap-10 items-center justify-center'>
-     <CardHeader>
-      
-       <h1 className='text-2xl font-semibold'>{`#${characterData.id} ${characterData.name}`}</h1>
-      </CardHeader> 
-      <CardContent className='w-full md:w-fit'>
+      <Card className='absolute z-20 h-80 md:h-1/2 md:w-1/2 bg-opacity-20 flex flex-col gap-10 items-center backdrop-blur-sm'>
+        <CardHeader className='w-full relative items-center flex'>
+          <Image
+            src={characterData.image}
+            alt='portrait'
+            width={600}
+            height={600}
+            className='absolute top-4 left-4 rounded-full object-cover size-40'
+          />
+          <h1 className='text-2xl font-semibold'>{`#${characterData.id} ${characterData.name}`}</h1>
+        </CardHeader>
+        <CardContent className='w-full md:w-fit'>
           <p className='flex flex-row items-center gap-4'>
             {
               // eslint-disable-next-line no-nested-ternary
@@ -120,10 +119,9 @@ export default async function RickAndMortyCharacterPage({
               <p>{locationData.dimension}</p>
             </div>
           </div>
-      </CardContent>
-
-          </Card>
-      <div className='flex absolute bottom-0 z-50 h-fit w-full flex-row items-center justify-center gap-4 md:w-80'>
+        </CardContent>
+      </Card>
+      <Card className='fixed bottom-0 mr-2 flex w-full flex-row items-center justify-center gap-4 text-primary'>
         <Button disabled={characterId <= 1} variant={'ghost'}>
           <Link href={'/rickandmorty/1'}>
             <ArrowLeftToLineIcon className='size-6' />
@@ -149,7 +147,7 @@ export default async function RickAndMortyCharacterPage({
             <ArrowRightToLineIcon className='size-6' />
           </Button>
         </Link>
-      </div>
+      </Card>
     </main>
   )
 }

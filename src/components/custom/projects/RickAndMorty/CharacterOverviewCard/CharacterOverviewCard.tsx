@@ -1,3 +1,5 @@
+'use client'
+
 import Image from 'next/image'
 import Link from 'next/link'
 import type { FC } from 'react'
@@ -25,7 +27,7 @@ export const CharacterOverviewCard: FC<CharacterOverviewCardProps> = ({
         'text-primary group relative w-screen overflow-hidden shadow-lg transition-all duration-300 ease-in-out md:size-80'
       )}
     >
-      <Link href={`/rickandmorty/${characterData.id}`}>
+      <Link href={`/rickandmorty/${characterData.id}`} prefetch>
         <Image
           src={characterData.image}
           alt='image'

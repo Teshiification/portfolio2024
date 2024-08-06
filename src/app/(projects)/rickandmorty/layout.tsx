@@ -15,8 +15,9 @@ export default function RickAndMortyLayout({
 }>) {
   return (
     <div
+      // eslint-disable-next-line tailwindcss/no-custom-classname
       className={
-        'bg-background text-foreground scrollbar scrollbar-track-primary scrollbar-thumb-secondary scrollbar-thumb-rounded-full flex min-h-screen w-screen overflow-x-hidden font-sans antialiased'
+        'scrollbar scrollbar-track-primary scrollbar-thumb-secondary scrollbar-thumb-rounded-full flex min-h-screen w-screen overflow-x-hidden bg-background font-sans text-foreground antialiased'
       }
     >
       {children}

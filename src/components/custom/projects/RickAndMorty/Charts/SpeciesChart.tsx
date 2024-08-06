@@ -6,9 +6,10 @@ import {
   ChartTooltip,
   ChartTooltipContent
 } from '@/components/ui/chart'
+import { Skeleton } from '@/components/ui/skeleton'
 import type { Character } from '@/types/rickandmorty/people'
 
-export const SpeciesChart = ({ data }: { data: Character[] }) => {
+export const SpeciesChart = ({ data }: { data?: Character[] }) => {
   type SpeciesType =
     | 'Human'
     | 'Alien'
@@ -31,7 +32,7 @@ export const SpeciesChart = ({ data }: { data: Character[] }) => {
   }
 
   // Iterate through each character
-  data.forEach((character: Character) => {
+  data?.forEach((character: Character) => {
     const { species } = character
     // Increment the count for the species
     if (speciesCount[species]) {
@@ -63,6 +64,8 @@ export const SpeciesChart = ({ data }: { data: Character[] }) => {
   const getColor = (species: SpeciesType): string => {
     return speciesColors[species] || speciesColors.Other
   }
+
+  if (!chartDataSpecies) return <Skeleton className='size-80' />
 
   return (
     <ChartContainer

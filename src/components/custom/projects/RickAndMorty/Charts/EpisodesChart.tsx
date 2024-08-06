@@ -6,20 +6,33 @@ import {
   ChartTooltip,
   ChartTooltipContent
 } from '@/components/ui/chart'
+import { Skeleton } from '@/components/ui/skeleton'
 import type { Character } from '@/types/rickandmorty/people'
 
-export const EpisodesChart = ({ data }: { data: Character[] }) => {
-  const chartDataEpsiodes = data.map((character: Character) => ({
+export const EpisodesChart = ({ data }: { data?: Character[] }) => {
+  const chartDataEpsiodes:
+    | {
+        name: string
+        episodes: number
+      }[]
+    | undefined = data?.map((character: Character) => ({
     name: character.name,
     episodes: character.episode.length
   }))
 
-  const chartConfigEpisodes = {
+  const chartConfigEpisodes: {
+    episodes: {
+      label: string
+      color: string
+    }
+  } = {
     episodes: {
       label: 'Episodes',
       color: 'hsl(var(--primary))'
     }
   } satisfies ChartConfig
+
+  if (!chartDataEpsiodes) return <Skeleton className='size-80' />
 
   return (
     <ChartContainer
