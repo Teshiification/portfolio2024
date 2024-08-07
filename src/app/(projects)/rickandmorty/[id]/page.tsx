@@ -7,29 +7,28 @@ import {
   GlobeIcon,
   HomeIcon
 } from 'lucide-react'
+import Image from 'next/image'
 import Link from 'next/link'
+import { FaGenderless } from 'react-icons/fa'
+import { IoMdFemale, IoMdMale } from 'react-icons/io'
 
-import { CharacterCard } from '@/components/custom/projects/RickAndMorty/CharacterCard'
 import { Button } from '@/components/ui/button'
+import { Card, CardContent, CardHeader } from '@/components/ui/card'
 import { Skeleton } from '@/components/ui/skeleton'
 import type { Location } from '@/types/rickandmorty/location'
 import { GET } from '@/types/rickandmorty/location'
 import type { Character } from '@/types/rickandmorty/people'
-import Image from 'next/image'
-import { IoMdFemale, IoMdMale } from 'react-icons/io'
-import { FaGenderless } from 'react-icons/fa'
-import { Card, CardContent, CardHeader } from '@/components/ui/card'
 
 export default async function RickAndMortyCharacterPage({
   params
 }: {
-  params: any
+  params: { id: number }
 }) {
   const { id } = params
 
-  const characterId: number = Number(id)
+  const characterId: number = id
   const characterData: Character = await fetch(
-    `${process.env.RICKANDMORTY_API_KEY}/character/${characterId}`
+    `https://rickandmortyapi.com/api/character/${characterId}`
   ).then((data) => data.json())
   console.log(characterData)
 
@@ -51,27 +50,26 @@ export default async function RickAndMortyCharacterPage({
     )
 
   return (
-    <main className='m-auto h-screen justify-center flex flex-col items-center gap-4 overflow-hidden md:justify-center md:p-4'>
+    <main className='flex h-screen w-full flex-col items-center justify-center gap-4 overflow-hidden bg-lime-950 md:justify-center md:p-4'>
       <Image
         src={characterData.image}
-        alt='portrait'
+        alt='portraitbackground'
         width={600}
         height={600}
-        className='absolute z-10 object-cover h-full left-0'
+        className='absolute right-0 z-0 size-full object-cover blur-md'
       />
-      <Image
-        src={characterData.image}
-        alt='portrait'
-        width={600}
-        height={600}
-        className='absolute z-0 object-cover h-full w-full right-0 blur-md opacity-20'
-      />
-      <Card className='absolute z-20 w-fit h-fit flex flex-col gap-10 items-center justify-center'>
-     <CardHeader>
-      
-       <h1 className='text-2xl font-semibold'>{`#${characterData.id} ${characterData.name}`}</h1>
-      </CardHeader> 
-      <CardContent className='w-full md:w-fit'>
+      <Card className='absolute z-20 flex h-80 flex-col items-center gap-10 bg-opacity-20 backdrop-blur-sm md:size-1/2'>
+        <CardHeader className='relative flex w-full items-center'>
+          <Image
+            src={characterData.image}
+            alt='portrait'
+            width={600}
+            height={600}
+            className='absolute left-4 top-4 size-40 rounded-full object-cover'
+          />
+          <h1 className='text-2xl font-semibold'>{`#${characterData.id} ${characterData.name}`}</h1>
+        </CardHeader>
+        <CardContent className='w-full md:w-fit'>
           <p className='flex flex-row items-center gap-4'>
             {
               // eslint-disable-next-line no-nested-ternary
@@ -120,10 +118,9 @@ export default async function RickAndMortyCharacterPage({
               <p>{locationData.dimension}</p>
             </div>
           </div>
-      </CardContent>
-
-          </Card>
-      <div className='flex absolute bottom-0 z-50 h-fit w-full flex-row items-center justify-center gap-4 md:w-80'>
+        </CardContent>
+      </Card>
+      <Card className='fixed bottom-0 mr-2 flex w-full flex-row items-center justify-center gap-4 text-primary'>
         <Button disabled={characterId <= 1} variant={'ghost'}>
           <Link href={'/rickandmorty/1'}>
             <ArrowLeftToLineIcon className='size-6' />
@@ -149,7 +146,7 @@ export default async function RickAndMortyCharacterPage({
             <ArrowRightToLineIcon className='size-6' />
           </Button>
         </Link>
-      </div>
+      </Card>
     </main>
   )
 }

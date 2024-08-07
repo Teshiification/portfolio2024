@@ -1,14 +1,16 @@
 import { Cell, Pie, PieChart } from 'recharts'
 
+import { Card, CardContent, CardHeader } from '@/components/ui/card'
 import type { ChartConfig } from '@/components/ui/chart'
 import {
   ChartContainer,
   ChartTooltip,
   ChartTooltipContent
 } from '@/components/ui/chart'
+import { Skeleton } from '@/components/ui/skeleton'
 import type { Character } from '@/types/rickandmorty/people'
 
-export const SpeciesChart = ({ data }: { data: Character[] }) => {
+export const SpeciesChart = ({ data }: { data?: Character[] }) => {
   type SpeciesType =
     | 'Human'
     | 'Alien'
@@ -31,7 +33,7 @@ export const SpeciesChart = ({ data }: { data: Character[] }) => {
   }
 
   // Iterate through each character
-  data.forEach((character: Character) => {
+  data?.forEach((character: Character) => {
     const { species } = character
     // Increment the count for the species
     if (speciesCount[species]) {
@@ -64,34 +66,43 @@ export const SpeciesChart = ({ data }: { data: Character[] }) => {
     return speciesColors[species] || speciesColors.Other
   }
 
+  if (!chartDataSpecies) return <Skeleton className='size-80' />
+
   return (
-    <ChartContainer
-      config={chartConfigSpecies}
-      className='m-auto flex max-h-[400px] min-h-[200px] w-full overflow-visible'
-    >
-      <PieChart accessibilityLayer data={chartDataSpecies}>
-        <Pie
-          data={chartDataSpecies}
-          dataKey='count'
-          nameKey='species'
-          innerRadius={60}
-          outerRadius={80}
-          label={({ name, value }) => `${name}: ${value}`}
+    <Card>
+      <CardHeader>
+        <h1 className='mx-auto'>Species</h1>
+      </CardHeader>
+      <CardContent>
+        <ChartContainer
+          config={chartConfigSpecies}
+          className='m-auto flex max-h-[400px] min-h-[200px] w-full overflow-visible'
         >
-          {chartDataSpecies.map(
-            (
-              entry: {
-                species: SpeciesType
-                count: number
-              },
-              index
-            ) => (
-              <Cell key={`cell-${index}`} fill={getColor(entry.species)} />
-            )
-          )}
-        </Pie>
-        <ChartTooltip content={<ChartTooltipContent />} />
-      </PieChart>
-    </ChartContainer>
+          <PieChart accessibilityLayer data={chartDataSpecies}>
+            <Pie
+              data={chartDataSpecies}
+              dataKey='count'
+              nameKey='species'
+              innerRadius={60}
+              outerRadius={80}
+              label={({ name, value }) => `${name}: ${value}`}
+            >
+              {chartDataSpecies.map(
+                (
+                  entry: {
+                    species: SpeciesType
+                    count: number
+                  },
+                  index
+                ) => (
+                  <Cell key={`cell-${index}`} fill={getColor(entry.species)} />
+                )
+              )}
+            </Pie>
+            <ChartTooltip content={<ChartTooltipContent />} />
+          </PieChart>
+        </ChartContainer>
+      </CardContent>
+    </Card>
   )
 }

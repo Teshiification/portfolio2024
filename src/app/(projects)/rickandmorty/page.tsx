@@ -1,21 +1,62 @@
 'use client'
 
-import { ArrowLeftIcon, ArrowRightIcon, HomeIcon } from 'lucide-react'
-import Link from 'next/link'
 import { useEffect, useState } from 'react'
 
-import { CharacterOverviewCard } from '@/components/custom/projects/RickAndMorty/CharacterOverviewCard'
-import { EpisodesChart } from '@/components/custom/projects/RickAndMorty/Charts/EpisodesChart'
-import { SpeciesChart } from '@/components/custom/projects/RickAndMorty/Charts/SpeciesChart'
+import {
+  CharacterOverviewCard,
+  EpisodesChart,
+  Pagination,
+  SpeciesChart
+} from '@/components/custom/projects/RickAndMorty'
 import { Button } from '@/components/ui/button'
-import { Card } from '@/components/ui/card'
+import {
+  Drawer,
+  DrawerClose,
+  DrawerContent,
+  DrawerDescription,
+  DrawerFooter,
+  DrawerHeader,
+  DrawerTitle,
+  DrawerTrigger
+} from '@/components/ui/drawer'
 import { ScrollArea } from '@/components/ui/scroll-area'
 import { Separator } from '@/components/ui/separator'
-import { Skeleton } from '@/components/ui/skeleton'
 import type { Character } from '@/types/rickandmorty/people'
+import { PieChartIcon } from 'lucide-react'
 
-export default function RickAndMortyCharactersPage() {
-  const [fetchedData, setFetchedData] = useState<{
+export default function RickAndMortyPage({
+  searchParams
+}: {
+  searchParams: { page?: string }
+}) {
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    })
+  }
+
+  // Extract page number from searchParams and default to 1 if not provided
+  const page = parseInt(searchParams.page || '1', 10)
+
+  async function fetchData() {
+    const url = `https://rickandmortyapi.com/api/character/?page=${page}`
+    console.log(url)
+    try {
+      const response = await fetch(url, {
+        next: { revalidate: 10 }
+      })
+      if (!response.ok) {
+        throw new Error(`Failed to fetch data: ${response.statusText}`)
+      }
+      return await response.json()
+    } catch (error) {
+      console.error('Fetch data error:', error)
+      return null
+    }
+  }
+
+  const [data, setData] = useState<{
     info: {
       count: number
       pages: number
@@ -23,89 +64,42 @@ export default function RickAndMortyCharactersPage() {
       prev: string | null
     }
     results: Character[]
-  }>({ info: { count: 0, next: null, pages: 0, prev: null }, results: [] })
-
-  const [fetchUrl, setFetchUrl] = useState<string>(
-    `https://rickandmortyapi.com/api/character`
-  )
-
-  const [page, setPage] = useState<Number>(1)
+  } | null>(null)
 
   useEffect(() => {
-    async function fetchData() {
-      try {
-        const response = await fetch(fetchUrl)
-        if (!response.ok) {
-          throw new Error(`Failed to fetch data${fetchUrl}`)
-        }
-        const data = await response.json()
-        setFetchedData(data)
-      } catch (error) {
-        console.error('Error fetching data:', error)
-      }
-    }
-    fetchData()
-  }, [fetchUrl])
-
-  const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth' // This will animate the scroll
+    scrollToTop()
+    fetchData().then((d) => {
+      setData(d)
     })
-  }
-
-  if (!fetchedData || !fetchedData.results)
-    return (
-      <Skeleton className='h-20 w-80 overflow-hidden text-center'>
-        Loading...
-      </Skeleton>
-    )
+  }, [page])
 
   return (
     <ScrollArea className='mt-24 flex w-full flex-col items-center justify-center'>
-      <div className='flex flex-col pr-4 md:flex-row md:pr-0'>
-        <EpisodesChart data={fetchedData.results as Character[]} />
-        <SpeciesChart data={fetchedData.results as Character[]} />
-      </div>
+      <Drawer>
+        <DrawerTrigger className='flex gap-4 mx-auto'>
+          <PieChartIcon />
+          <p>Open statistics</p>
+        </DrawerTrigger>
+        <DrawerContent className='flex items-center'>
+          <DrawerHeader>
+            <DrawerTitle>Stats for nerds</DrawerTitle>
+            <DrawerDescription>
+              May be useless but it's nice to have
+            </DrawerDescription>
+          </DrawerHeader>
+          <div className='flex flex-col p-4 gap-4 md:flex-row'>
+            <EpisodesChart data={data?.results} />
+            <SpeciesChart data={data?.results} />
+          </div>
+        </DrawerContent>
+      </Drawer>
       <Separator className='my-10' />
       <div className='flex w-full flex-wrap items-center justify-center gap-8 pb-20'>
-        {fetchedData.results.map((characterData: Character, index: number) => (
+        {data?.results.map((characterData: Character, index: number) => (
           <CharacterOverviewCard key={index} characterData={characterData} />
         ))}
       </div>
-
-      <Card className='fixed bottom-0 mr-2 flex w-full flex-row items-center justify-center gap-4 text-primary'>
-        <Button
-          disabled={!fetchedData.info.prev}
-          variant={'ghost'}
-          onClick={() => {
-            setFetchUrl(fetchedData.info.prev || '')
-            setPage(Number(page) - 1)
-            scrollToTop()
-          }}
-        >
-          <ArrowLeftIcon className='size-6' />
-        </Button>
-        <Link href={'/'}>
-          <Button variant={'ghost'}>
-            <HomeIcon />
-          </Button>
-        </Link>
-        <Button
-          disabled={!fetchedData.info.next}
-          variant={'ghost'}
-          onClick={() => {
-            setFetchUrl(fetchedData.info.next || '')
-            setPage(Number(page) + 1)
-            scrollToTop()
-          }}
-        >
-          <ArrowRightIcon className='size-6' />
-        </Button>
-        <p className='absolute right-2'>
-          {page.toString()}/{fetchedData.info.pages}
-        </p>
-      </Card>
+      <Pagination page={page} info={data?.info} />
     </ScrollArea>
   )
 }
