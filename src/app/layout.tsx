@@ -29,7 +29,7 @@ export default function RootLayout({
     <html lang='en' suppressHydrationWarning>
       <body
         className={cn(
-          'bg-background text-foreground flex min-h-screen w-screen overflow-x-hidden font-sans antialiased ',
+          'bg-background text-foreground flex h-screen w-screen overflow-x-hidden font-sans antialiased ',
           'scrollbar scrollbar-track-primary scrollbar-thumb-secondary scrollbar-thumb-rounded-full',
           fontSans.variable
         )}
@@ -46,7 +46,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <NavTools />
-          <div className='relative flex min-h-screen w-full select-none flex-col'>
+          <div className='relative flex h-screen w-full select-none flex-col'>
             {children}
           </div>
         </ThemeProvider>

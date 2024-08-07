@@ -9,52 +9,32 @@ import {
   CardDescription,
   CardHeader
 } from '@/components/ui/card'
+import { ImagePrisma } from '@/components/custom/ui/ImagePrisma'
 
 export default function Home() {
   const birthdayDate = new Date('04.04.1998')
   const dateNow = new Date()
 
   return (
-    <main className='flex w-full flex-col items-center gap-20'>
-      <div className='absolute flex h-full gap-4 md:left-1/4'>
-        {Array.from({ length: 7 }, (_, index) => (
-          <div key={index} className='relative flex w-4 overflow-visible'>
-            <div className='size-full w-4 bg-yellow-950 opacity-50' />
-            {Array.from({ length: 7 }, (__, i) => Ivy(i))}
-          </div>
-        ))}
-      </div>
-      <section className='z-20 flex w-full flex-col items-center justify-center gap-40 bg-gradient-to-b from-primary/20 px-4 md:min-h-screen'>
-        <div className='mt-20 flex flex-col items-center gap-20 md:flex-row'>
-          <Card className='mx-4 flex flex-col'>
-            <CardHeader>
-              <h1 className='text-4xl font-bold'>Danny Sinicco</h1>
-            </CardHeader>
-            <CardContent>
-              <h2 className='font-semibold'>Welcome to my portfolio</h2>
-            </CardContent>
-          </Card>
-          <Card className='relative size-80 select-none overflow-hidden rounded-full shadow-lg shadow-primary-foreground/20 transition-all duration-500 ease-in-out hover:shadow-primary/80'>
-            <div
-              id='portrait-gradient'
-              className='absolute size-full bg-gradient-to-t from-primary/40'
-            />
-            <div
-              id='hero-portrait'
-              className='size-full'
-              style={{
-                backgroundImage: `url(/images/portraits/me_woodpanels.jpg)`,
-                backgroundSize: 'cover',
-                backgroundPosition: 'center',
-                backgroundBlendMode: 'multiply'
-              }}
-            />
-          </Card>
+    <main className='flex w-full flex-col items-center  snap-y snap-mandatory overflow-y-scroll h-screen'>
+      <section className='pt-20 snap-start flex w-full flex-col items-center justify-center gap-40 bg-gradient-to-b from-primary/20 px-4 min-h-screen'>
+        <div className='w-full items-center flex flex-col gap-8'>
+          <h1 className='text-4xl font-bold'>Danny Sinicco</h1>
+          <h2 className='font-semibold'>Welcome to my portfolio</h2>
         </div>
 
-        <Card className='flex size-fit flex-col p-10'>
-          <CardHeader className='relative flex w-full flex-row items-center'>
-            <h1 className='mx-auto self-center text-2xl font-semibold uppercase underline decoration-primary underline-offset-2'>
+        <div className='flex flex-col md:flex-row items-center'>
+          <ImagePrisma
+            altText='test'
+            imageUrl='/images/portraits/me_woodpanels.jpg'
+          />
+        </div>
+      </section>
+
+      <section className='snap-start flex w-full flex-col items-center justify-center gap-40 bg-gradient-to-t from-primary/20 px-4  min-h-screen'>
+        <Card className='flex flex-col p-10'>
+          <CardHeader className='w-full relative flex flex-row items-center'>
+            <h1 className='md:mx-auto self-center text-2xl font-semibold uppercase underline decoration-primary underline-offset-2'>
               About me
             </h1>
             <div className='absolute right-0 flex gap-4 self-end'>
@@ -71,7 +51,7 @@ export default function Home() {
             </div>
           </CardHeader>
           <CardDescription className='flex flex-col gap-4 p-2'>
-            <p
+            <div
               title={`Or just ${dateNow.getFullYear() - birthdayDate.getFullYear()}`}
               className='flex cursor-help items-center gap-2'
             >
@@ -80,7 +60,7 @@ export default function Home() {
               <p className='not-sr-only'>
                 (or just {dateNow.getFullYear() - birthdayDate.getFullYear()})
               </p>
-            </p>
+            </div>
             <p>
               ⚡ I started programming when I was 12 and I still have a lot to
               learn.
@@ -96,7 +76,8 @@ export default function Home() {
           </CardDescription>
         </Card>
       </section>
-      <section className='z-20 flex w-full flex-col items-center justify-center gap-40 px-4 md:min-h-screen'>
+
+      <section className='snap-start flex w-full flex-col items-center justify-center gap-40 bg-gradient-to-b from-primary/20 px-4 min-h-screen'>
         <div className='flex flex-col items-center justify-center gap-4 overflow-x-auto px-4 md:flex-row'>
           <Card className='jusitfy-around flex w-80 flex-col p-2'>
             <Link
