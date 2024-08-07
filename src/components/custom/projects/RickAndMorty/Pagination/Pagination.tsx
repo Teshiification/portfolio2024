@@ -37,7 +37,7 @@ export const Pagination = ({
         disabled={!info.prev}
         variant={'ghost'}
         onClick={() => {
-          router.push(`/rickandmorty?page=0`)
+          router.push(`/rickandmorty?page=1`)
         }}
       >
         <ArrowLeftToLineIcon />

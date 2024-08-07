@@ -80,14 +80,14 @@ export default function RickAndMortyPage({
           <PieChartIcon />
           <p>Open statistics</p>
         </DrawerTrigger>
-        <DrawerContent>
+        <DrawerContent className='flex items-center'>
           <DrawerHeader>
             <DrawerTitle>Stats for nerds</DrawerTitle>
             <DrawerDescription>
               May be useless but it's nice to have
             </DrawerDescription>
           </DrawerHeader>
-          <div className='flex flex-col pr-4 md:flex-row md:pr-0'>
+          <div className='flex flex-col p-4 gap-4 md:flex-row'>
             <EpisodesChart data={data?.results} />
             <SpeciesChart data={data?.results} />
           </div>
