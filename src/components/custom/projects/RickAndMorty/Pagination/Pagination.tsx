@@ -1,8 +1,15 @@
 'use client'
 
-import { ArrowLeftIcon, ArrowRightIcon, HomeIcon } from 'lucide-react'
+import {
+  ArrowLeftFromLineIcon,
+  ArrowLeftIcon,
+  ArrowLeftToLineIcon,
+  ArrowRightIcon,
+  ArrowRightToLineIcon,
+  HomeIcon
+} from 'lucide-react'
 import Link from 'next/link'
-import Router from 'next/router'
+import { useRouter } from 'next/navigation'
 
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
@@ -20,12 +27,7 @@ export const Pagination = ({
     prev: string | null
   }
 }) => {
-  const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth'
-    })
-  }
+  const router = useRouter()
 
   if (!info) return <Skeleton className='fixed bottom-0 mr-2  w-full' />
 
@@ -35,32 +37,38 @@ export const Pagination = ({
         disabled={!info.prev}
         variant={'ghost'}
         onClick={() => {
-          scrollToTop()
-          Router.push({
-            pathname: '/rickandmorty',
-            query: { page: (page - 1).toString() }
-          })
+          router.push(`/rickandmorty?page=0`)
+        }}
+      >
+        <ArrowLeftToLineIcon />
+      </Button>
+      <Button
+        disabled={!info.prev}
+        variant={'ghost'}
+        onClick={() => {
+          router.push(`/rickandmorty?page=${(page - 1).toString()}`)
         }}
       >
         <ArrowLeftIcon className='size-6' />
       </Button>
-      <Link href={'/'} prefetch>
-        <Button variant={'ghost'}>
-          <HomeIcon />
-        </Button>
-      </Link>
+
       <Button
         disabled={!info.next}
         variant={'ghost'}
         onClick={() => {
-          scrollToTop()
-          Router.push({
-            pathname: '/rickandmorty',
-            query: { page: (page + 1).toString() }
-          })
+          router.push(`/rickandmorty?page=${(page + 1).toString()}`)
         }}
       >
         <ArrowRightIcon className='size-6' />
+      </Button>
+      <Button
+        disabled={!info.next}
+        variant={'ghost'}
+        onClick={() => {
+          router.push(`/rickandmorty?page=${info.pages.toString()}`)
+        }}
+      >
+        <ArrowRightToLineIcon />
       </Button>
       <p className='absolute right-2'>
         {page}/{info.pages}
