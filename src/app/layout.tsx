@@ -8,6 +8,7 @@ import React from 'react'
 import { ThemeProvider } from '@/components/providers'
 import { Badge } from '@/components/ui/badge'
 import { NavTools } from '@/components/ui/nav-tools'
+import { Toaster } from '@/components/ui/sonner'
 import { cn } from '@/lib/utils'
 
 const fontSans = FontSans({
@@ -34,6 +35,7 @@ export default function RootLayout({
           fontSans.variable
         )}
       >
+        <Toaster />
         <Badge className='fixed left-1/2 top-4 z-50 -translate-x-1/2 gap-2 md:text-lg'>
           <MessageCircleWarningIcon />
           <p>Page under construction</p>
