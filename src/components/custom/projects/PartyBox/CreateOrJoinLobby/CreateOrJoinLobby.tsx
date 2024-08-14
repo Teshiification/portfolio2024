@@ -56,6 +56,7 @@ export const CreateOrJoinLobby: React.FC = () => {
 
   // Handle form submission
   const onJoinSubmit = (data: z.infer<typeof joinLobbySchema>) => {
+    setPlayerName(data.playerName)
     joinLobby(data.key)
   }
 
