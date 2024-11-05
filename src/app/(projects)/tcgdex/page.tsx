@@ -1,6 +1,6 @@
 "use server"
 
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
 import TCGdex from '@tcgdex/sdk'
 import { GalleryVerticalIcon } from 'lucide-react'
 import Image from 'next/image'
@@ -17,14 +17,27 @@ export default async function TCGdexPage() {
 
   const sets = await tcgdex.fetchSets();
 
-console.log(sets)
+  const {width,height} = {width:590*0.4, height:860*0.4}
+
+
   return (
-    <div className='p-4'>
+    <div className='flex flex-col gap-10 p-4 items-center w-full mt-10'>
+      <Card>
+        <CardHeader>
+          <CardTitle>
+            TCGdex
+          </CardTitle>
+          <CardDescription>
+            Every dex you can find out there from an enourmous card database
+          </CardDescription>
+        </CardHeader>
+      </Card>
     <ul className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5">
   
-    {sets?.map((set)=>
-    <Link href={`/tcgdex/${set.id}`} key={set.id}>
-    <Card >
+    {sets?.map((set)=>{
+      return(
+    <Link href={`/tcgdex/${set.id}`} key={set.id} passHref>
+    <Card className={`w-full md:w-[295px] md:h-[430px]`}>
       <CardHeader>
         <CardTitle>
         <Image 
@@ -39,13 +52,16 @@ console.log(sets)
         </CardDescription>
       </CardHeader>
       <CardContent className='flex'>
+      </CardContent>
+      
+      <CardFooter>
         <GalleryVerticalIcon />
         <span>
-          {set?.cardCount.total||"???"}
+          {`${set?.cardCount.total||"???"} cards`}
         </span>
-      </CardContent>
+      </CardFooter>
     </Card>
-    </Link>
+    </Link>)}
     )}
   </ul>
   </div>)
