@@ -82,7 +82,7 @@ export const TcgDexGrid = ({
         ) : null}
       </AnimatePresence>
 
-      <ul className='grid grid-cols-1 gap-4 bg-gray-500 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5'>
+      <ul className='grid w-full grid-cols-1 items-center justify-center gap-4 overflow-y-scroll bg-gray-500 p-2 pt-8 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5'>
         {data?.map((card) => (
           <TcgDexCard key={card.id} data={card} id={id} setActive={setActive} />
         ))}

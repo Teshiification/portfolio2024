@@ -20,6 +20,6 @@ export default async function TCGdexIdPage({
   const cards = await tcgdex.fetchCards(id as string);
 
   return (
-    <TcgDexGrid data={cards}/>
+    <TcgDexGrid data={cards} className='justify-center flex size-full'/>
 )
 }
