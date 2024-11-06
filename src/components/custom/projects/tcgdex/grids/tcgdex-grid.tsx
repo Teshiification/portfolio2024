@@ -1,9 +1,9 @@
 'use client'
 
-import type { CardResume$1 } from '@tcgdex/sdk'
 import { AnimatePresence, motion } from 'framer-motion'
 import { useEffect, useId, useRef, useState } from 'react'
 
+import type { CardResume$1 } from '@/components/custom/projects/tcgdex/cards'
 import {
   TcgDexCard,
   TcgDexDetailCard

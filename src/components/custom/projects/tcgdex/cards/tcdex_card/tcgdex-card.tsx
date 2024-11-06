@@ -1,10 +1,10 @@
 'use client'
 
-import type { CardResume$1 } from '@tcgdex/sdk'
 import { motion } from 'framer-motion'
 import Image from 'next/image'
 import { useState } from 'react'
 
+import type { CardResume$1 } from '@/components/custom/projects/tcgdex/cards'
 import { Skeleton } from '@/components/ui/skeleton'
 import { cn } from '@/lib/utils'
 

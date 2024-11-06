@@ -1,15 +1,23 @@
 'use client'
 
-import type { CardResume$1 } from '@tcgdex/sdk'
 import { motion } from 'framer-motion'
 import Image from 'next/image'
-import { useState } from 'react'
+import React, { useState } from 'react'
 
+import { CardBody, CardContainer, CardItem } from '@/components/ui/3d-card'
 import { Skeleton } from '@/components/ui/skeleton'
 import { cn } from '@/lib/utils'
-import React from "react";
-import { CardBody, CardContainer, CardItem } from "@/components/ui/3d-card";
-import Link from "next/link";
+
+export interface CardResume$1 {
+  id: string
+  localId: string
+
+  /**
+   * Card Name (Including the suffix if next to card name)
+   */
+  name: string
+  image?: string
+}
 
 type TcgDexDetailCardProps = {
   className?: string
@@ -25,14 +33,16 @@ export const TcgDexDetailCard = ({
   className
 }: TcgDexDetailCardProps) => {
   const [isLoading, setIsLoading] = useState<boolean>(true)
-  
+
   return (
     <motion.div
       layoutId={`card-${data.id}-${id}`}
       className={cn('relative', className)}
     >
-       {isLoading && <Skeleton className={`size-full md:h-[430px] md:w-[295px]`} />}
-        <Image
+      {isLoading && (
+        <Skeleton className={`size-full md:h-[430px] md:w-[295px]`} />
+      )}
+      <Image
         id={id}
         src={`${data.image}/high.png`}
         alt={data.id || ''}
@@ -46,23 +56,26 @@ export const TcgDexDetailCard = ({
         onLoadingComplete={() => setIsLoading(false)}
         onClick={() => setActive(null)}
       />
-      <CardContainer className="not-sr-only inter-var items-center justify-center" containerClassName='items-center justify-center'>
-        <CardBody className="size-fit  relative group/card dark:hover:shadow-2xl dark:hover:shadow-emerald-500/[0.1] dark:bg-black dark:border-white/[0.2] border-black/[0.1] w-auto sm:w-[30rem] rounded-xl p-6 border  ">
-          <CardItem translateZ="100">
-          <Image
-            id={id}
-            src={`${data.image}/high.png`}
-            alt={data.id || ''}
-            width={200}
-            height={200}
-            className={cn(
-              `transition-opacity cursor-zoom-out duration-300 ease-in-out w-full md:h-[430px] md:w-[295px]`,
-              isLoading ? 'opacity-0' : 'opacity-100'
-            )}
-            priority
-            onLoadingComplete={() => setIsLoading(false)}
-            onClick={() => setActive(null)}
-          />
+      <CardContainer
+        className='inter-var not-sr-only items-center justify-center'
+        containerClassName='items-center justify-center'
+      >
+        <CardBody className='group/card  relative size-fit w-auto rounded-xl border border-black/[0.1] p-6 dark:border-white/[0.2] dark:bg-black dark:hover:shadow-2xl dark:hover:shadow-emerald-500/[0.1] sm:w-[30rem]  '>
+          <CardItem translateZ='100'>
+            <Image
+              id={id}
+              src={`${data.image}/high.png`}
+              alt={data.id || ''}
+              width={200}
+              height={200}
+              className={cn(
+                `transition-opacity cursor-zoom-out duration-300 ease-in-out w-full md:h-[430px] md:w-[295px]`,
+                isLoading ? 'opacity-0' : 'opacity-100'
+              )}
+              priority
+              onLoadingComplete={() => setIsLoading(false)}
+              onClick={() => setActive(null)}
+            />
           </CardItem>
         </CardBody>
       </CardContainer>
