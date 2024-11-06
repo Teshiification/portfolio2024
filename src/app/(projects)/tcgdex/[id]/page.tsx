@@ -1,4 +1,4 @@
-import { TcgDexGrid } from '@/components/projects/tcgdex/grids/tcgdex-grid'
+import { TcgDexGrid } from '@/components/custom/projects/tcgdex/grids/tcgdex-grid'
 import TCGdex from '@tcgdex/sdk'
 
 export default async function TCGdexIdPage({

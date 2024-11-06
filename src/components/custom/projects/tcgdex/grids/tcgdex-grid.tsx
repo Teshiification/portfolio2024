@@ -7,7 +7,7 @@ import { useEffect, useId, useRef, useState } from 'react'
 import {
   TcgDexCard,
   TcgDexDetailCard
-} from '@/components/projects/tcgdex/cards'
+} from '@/components/custom/projects/tcgdex/cards'
 import { useKeyDown, useOutsideClick } from '@/hooks'
 
 export const TcgDexGrid = ({
