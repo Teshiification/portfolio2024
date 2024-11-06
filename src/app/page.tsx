@@ -1,7 +1,7 @@
 import { ClockIcon, GithubIcon, LinkedinIcon } from 'lucide-react'
 import Link from 'next/link'
 
-import ProjectsPage from '@/components/custom/projects/ProjectsCarousel'
+import { ProjectsCarousel } from '@/components/custom/projects/ProjectsCarousel'
 import { ImagePrisma } from '@/components/custom/ui/ImagePrisma'
 import { Button } from '@/components/ui/button'
 import { Card, CardDescription, CardHeader } from '@/components/ui/card'
@@ -72,7 +72,7 @@ export default function Home() {
         </Card>
       </section>
       <section className='flex min-h-screen w-full snap-start flex-col items-center justify-center bg-gradient-to-b from-primary/20 px-4'>
-        <ProjectsPage />
+        <ProjectsCarousel />
       </section>
     </main>
   )
