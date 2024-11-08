@@ -1,6 +1,7 @@
 'use client'
 
 import { AnimatePresence, motion } from 'framer-motion'
+import { Router, StepBackIcon } from 'lucide-react'
 import { useEffect, useId, useRef, useState } from 'react'
 
 import type { CardResume$1 } from '@/components/custom/projects/tcgdex/cards'
@@ -8,7 +9,9 @@ import {
   TcgDexCard,
   TcgDexDetailCard
 } from '@/components/custom/projects/tcgdex/cards'
+import { Button } from '@/components/ui/button'
 import { useKeyDown, useOutsideClick } from '@/hooks'
+import { useRouter } from 'next/navigation'
 
 export const TcgDexGrid = ({
   data,
@@ -20,6 +23,7 @@ export const TcgDexGrid = ({
   const [active, setActive] = useState<CardResume$1 | boolean | null>(null)
   const id = useId()
   const ref = useRef<HTMLDivElement | null>(null)
+  const router = useRouter();
 
   useEffect(() => {
     if (active && typeof active === 'object') {
@@ -82,7 +86,16 @@ export const TcgDexGrid = ({
         ) : null}
       </AnimatePresence>
 
-      <ul className='grid w-full grid-cols-1 items-center justify-center gap-4 overflow-y-scroll bg-gray-500 p-2 pt-8 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5'>
+      <ul className='grid w-full grid-cols-1 items-center justify-center gap-4 overflow-y-scroll bg-gradient-to-b from-primary/20 p-2 pt-8 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5'>
+        <Button
+className='transition-all hover:scale-110 border border-border rounded-none cursor-pointer duration-300 ease-in-out w-full md:h-[430px] md:w-[295px]'
+
+          variant={'ghost'}
+          onClick={()=> router.back()}
+        >
+          <StepBackIcon className='size-1/2' />
+          <span className='text-lg font-semibold'>GO BACK TO OVERVIEW</span>
+        </Button>
         {data?.map((card) => (
           <TcgDexCard key={card.id} data={card} id={id} setActive={setActive} />
         ))}

@@ -37,7 +37,7 @@ export const TcgDexCard = ({
         width={200}
         height={200}
         className={cn(
-          `transition-opacity cursor-zoom-in duration-300 ease-in-out w-full md:h-[430px] md:w-[295px]`,
+          `hover:shadow-xl hover:shadow-primary ease-in-out duration-200 transition-all hover:scale-110 cursor-zoom-in w-full md:h-[430px] md:w-[295px]`,
           isLoading ? 'opacity-0' : 'opacity-100'
         )}
         onLoadingComplete={() => setIsLoading(false)}
