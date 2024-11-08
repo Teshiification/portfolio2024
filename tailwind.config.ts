@@ -2,6 +2,22 @@ import type { Config } from 'tailwindcss'
 
 const { fontFamily } = require('tailwindcss/defaultTheme')
 
+const {
+  default: flattenColorPalette
+} = require('tailwindcss/lib/util/flattenColorPalette')
+
+function addVariablesForColors({ addBase, theme }: any) {
+  const allColors = flattenColorPalette(theme('colors'))
+  const newVars = Object.fromEntries(
+    Object.entries(allColors).map(([key, val]) => [`--${key}`, val])
+  )
+
+  addBase({
+    ':root': newVars
+  })
+}
+
+/** @type {import('tailwindcss').Config} */
 const config = {
   darkMode: ['class'],
   content: [
@@ -80,7 +96,8 @@ const config = {
       }
     }
   },
-  plugins: [require('tailwindcss-animate')]
+  // eslint-disable-next-line global-require
+  plugins: [require('tailwindcss-animate'), addVariablesForColors]
 } satisfies Config
 
 export default config

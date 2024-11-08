@@ -46,7 +46,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <NavTools />
-          <div className='relative flex h-screen w-full select-none flex-col'>
+          <div className='relative inset-0 flex h-screen w-full select-none flex-col items-center justify-center'>
             {children}
           </div>
         </ThemeProvider>
