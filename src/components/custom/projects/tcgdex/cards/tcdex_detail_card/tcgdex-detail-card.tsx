@@ -39,29 +39,30 @@ export const TcgDexDetailCard = ({
       layoutId={`card-${data.id}-${id}`}
       className={cn('relative', className)}
     >
-      {isLoading && (
-        <Skeleton className={`size-full md:h-[430px] md:w-[295px]`} />
-      )}
-      <Image
-        id={id}
-        src={`${data.image}/high.png`}
-        alt={data.id || ''}
-        width={200}
-        height={200}
-        className={cn(
-          `sr-only transition-opacity cursor-zoom-out duration-300 ease-in-out w-full md:h-[430px] md:w-[295px]`,
-          isLoading ? 'opacity-0' : 'opacity-100'
-        )}
-        priority
-        onLoadingComplete={() => setIsLoading(false)}
-        onClick={() => setActive(null)}
-      />
+      <div className='sr-only'>
+        {isLoading && <Skeleton className={`size-full`} />}
+        <Image
+          id={id}
+          src={`${data.image}/high.png`}
+          alt={data.id || ''}
+          width={200}
+          height={200}
+          className={cn(
+            `transition-opacity cursor-zoom-out duration-300 ease-in-out w-full md:h-[430px] md:w-[295px]`,
+            isLoading ? 'opacity-0' : 'opacity-100'
+          )}
+          priority
+          onLoadingComplete={() => setIsLoading(false)}
+          onClick={() => setActive(null)}
+        />
+      </div>
       <CardContainer
         className='inter-var not-sr-only items-center justify-center'
         containerClassName='items-center justify-center'
       >
-        <CardBody className='group/card  relative size-fit w-auto rounded-xl border border-black/[0.1] p-6 dark:border-white/[0.2] dark:bg-black dark:hover:shadow-2xl dark:hover:shadow-emerald-500/[0.1] sm:w-[30rem]  '>
+        <CardBody className='group/card relative size-fit rounded-xl border border-black/[0.1] p-20 dark:border-white/[0.2] dark:bg-transparent dark:hover:shadow-2xl dark:hover:shadow-emerald-500/[0.1]'>
           <CardItem translateZ='100'>
+            {isLoading && <Skeleton className={`h-[430px] w-[295px]`} />}
             <Image
               id={id}
               src={`${data.image}/high.png`}
@@ -72,6 +73,7 @@ export const TcgDexDetailCard = ({
                 `transition-opacity cursor-zoom-out duration-300 ease-in-out w-full md:h-[430px] md:w-[295px]`,
                 isLoading ? 'opacity-0' : 'opacity-100'
               )}
+              hidden={isLoading}
               priority
               onLoadingComplete={() => setIsLoading(false)}
               onClick={() => setActive(null)}
